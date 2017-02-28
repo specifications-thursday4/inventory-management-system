@@ -16,6 +16,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>\\Mac\Home\Desktop\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
@@ -28,9 +29,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -121,9 +121,6 @@
     </Compile>
     <Compile Include="Games.cs" />
     <Compile Include="Platforms.cs" />
-    <Compile Include="QuickAdd.xaml.cs">
-      <DependentUpon>QuickAdd.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UpdateInventory.xaml.cs">
       <DependentUpon>UpdateInventory.xaml</DependentUpon>
     </Compile>
@@ -147,10 +144,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="QuickAdd.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UpdateInventory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,59 +167,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="json\games0.json" />
     <None Include="8BitIMS_TemporaryKey.pfx" />
-    <None Include="json\games1.json" />
-    <None Include="json\games10.json" />
-    <None Include="json\games11.json" />
-    <None Include="json\games12.json" />
-    <None Include="json\games13.json" />
-    <None Include="json\games14.json" />
-    <None Include="json\games15.json" />
-    <None Include="json\games16.json" />
-    <None Include="json\games17.json" />
-    <None Include="json\games18.json" />
-    <None Include="json\games19.json" />
-    <None Include="json\games2.json" />
-    <None Include="json\games20.json" />
-    <None Include="json\games21.json" />
-    <None Include="json\games22.json" />
-    <None Include="json\games23.json" />
-    <None Include="json\games24.json" />
-    <None Include="json\games25.json" />
-    <None Include="json\games26.json" />
-    <None Include="json\games27.json" />
-    <None Include="json\games28.json" />
-    <None Include="json\games29.json" />
-    <None Include="json\games3.json" />
-    <None Include="json\games30.json" />
-    <None Include="json\games31.json" />
-    <None Include="json\games32.json" />
-    <None Include="json\games33.json" />
-    <None Include="json\games34.json" />
-    <None Include="json\games35.json" />
-    <None Include="json\games36.json" />
-    <None Include="json\games37.json" />
-    <None Include="json\games38.json" />
-    <None Include="json\games39.json" />
-    <None Include="json\games4.json" />
-    <None Include="json\games40.json" />
-    <None Include="json\games41.json" />
-    <None Include="json\games42.json" />
-    <None Include="json\games43.json" />
-    <None Include="json\games44.json" />
-    <None Include="json\games45.json" />
-    <None Include="json\games46.json" />
-    <None Include="json\games47.json" />
-    <None Include="json\games48.json" />
-    <None Include="json\games49.json" />
-    <None Include="json\games5.json" />
-    <None Include="json\games6.json" />
-    <None Include="json\games7.json" />
-    <None Include="json\games8.json" />
-    <None Include="json\games9.json" />
-    <None Include="json\platforms0.json" />
-    <None Include="json\platforms1.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

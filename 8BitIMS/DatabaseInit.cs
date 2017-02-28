@@ -12,6 +12,10 @@ using System.Data.SQLite;
 
 namespace _8BitIMS
 {
+    /// <summary>
+    /// DatabaseInit initializes the database by setting up all the necessary tables, and 
+    /// then pulls data from IGDB and inserts the necessary platforms and games into the database.
+    /// </summary>
     class DatabaseInit
     {
         private static string DATABASE = "Data Source = inventory.db";
