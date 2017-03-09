@@ -92,7 +92,7 @@ namespace _8BitIMS
                 Count.Children.Add(countBox[i]);
             }
 
-
+            
             conn.Close();
         }
 
