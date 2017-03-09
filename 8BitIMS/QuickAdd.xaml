@@ -8,7 +8,23 @@
       d:DesignHeight="540" d:DesignWidth="640"
       Title="QuickAdd">
 
-    <Grid>
-        
+    <Grid  Background="LightSkyBlue">
+        <Canvas>
+
+            <Image Source="res/otherscreen.png" Width="640"/>
+        </Canvas>
+        <Canvas>
+            <Button Style="{StaticResource QuestionBlock}" Name="Console" Canvas.Left="140" Canvas.Top="75" Click="ButtonClick"/>
+
+        </Canvas>
+        <Canvas>
+            <Image Source="res/games.png" Height="34" Canvas.Left="360" Canvas.Top="200" Width="194"/>
+        </Canvas>
+        <Canvas Margin="390,100,150,315">
+            <Button Style="{StaticResource QuestionBlock}" Name="Games" Canvas.Left="10" Canvas.Top="-25" Click="ButtonClick"/>
+        </Canvas>
+        <Canvas>
+            <Image Source="res/consoles.png" Height="34" Canvas.Left="116" Canvas.Top="200" Width="149"/>
+        </Canvas>
     </Grid>
 </Page>

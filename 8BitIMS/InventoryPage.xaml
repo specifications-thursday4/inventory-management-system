@@ -16,11 +16,15 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" Click="Back"/>
+
+
+            
+            <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Back"/>
             <StackPanel Name="GameColumn" Grid.Column="0" Grid.Row="1">
                
             </StackPanel>
