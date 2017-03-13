@@ -26,24 +26,14 @@ namespace _8BitIMS
             InitializeComponent();
         }
 
-        private void Inventory_Click(object sender, RoutedEventArgs e)
+        private void POS(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("UpdateInventory.xaml", UriKind.Relative));
+            
         }
-
-        private void Add_Item(object sender, RoutedEventArgs e)
+        
+        private void IMS(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Exit(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void View_Detail(object sender, RoutedEventArgs e)
-        {
-
+            this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
         }
     }
 }

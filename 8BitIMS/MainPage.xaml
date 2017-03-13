@@ -10,29 +10,33 @@
 
     <Grid Background="LightSkyBlue">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Style="{StaticResource QuestionBlock}" Click="Inventory_Click" Margin="80,385,490,45" Height="Auto" Width="Auto"/>
-        <Button Style="{StaticResource QuestionBlock}" Click="Exit" Margin="430,385,100,45" Height="Auto" Width="Auto"/>
-        <Button Style="{StaticResource QuestionBlock}" Click="Add_Item" Height="Auto" Margin="80,45,495,385" Width="Auto"/>
-        <Button Style="{StaticResource QuestionBlock}" Click="View_Detail" Margin="430,45,100,385" Width="Auto" Height="Auto"/>
-        <Canvas>
-            <Image Source="res/exit.png" Height="85" Canvas.Left="410" Canvas.Top="330" Width="165"/>
-        </Canvas>
-        <Canvas>
-            <Image Source="res/viewdetail.png" Height="85" Canvas.Top="85" Canvas.Left="415" Width="165"/>
-        </Canvas>
-        <Canvas>
-            <Image Source="res/inventory.png" Height="85" Canvas.Top="330" Canvas.Left="40" Width="165"/>
-        </Canvas>
-        <Canvas>
-            <Image Source="res/quickadd.png" Height="85" Canvas.Top="85" Canvas.Left="45" Width="165"/>
-        </Canvas>
-        <Canvas>
-            <Image Source="res/logo.png" Height="180" Canvas.Top="170" Canvas.Left="60" Width="550"/>
-        </Canvas>
+        <Button Style="{StaticResource QuestionBlock}" Click="IMS" Grid.Column="0"/>
+        <Button Style="{StaticResource QuestionBlock}" Click="POS" Grid.Column="1"/>
+        <Label Content="Inventory" FontSize="36"  RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="320" X="70"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+
+        <Label Content="Point of Sale" FontSize="36"  RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="320" X="400"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        
 
     </Grid>
 
