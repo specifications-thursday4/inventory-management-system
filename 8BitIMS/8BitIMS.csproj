@@ -116,6 +116,9 @@
       <DependentUpon>AddNewItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="DatabaseInit.cs" />
+    <Compile Include="IMSMainPage.xaml.cs">
+      <DependentUpon>IMSMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InventoryPage.xaml.cs">
       <DependentUpon>InventoryPage.xaml</DependentUpon>
     </Compile>
@@ -130,7 +133,11 @@
     <Compile Include="UpdateInventory.xaml.cs">
       <DependentUpon>UpdateInventory.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Page Include="IMSMainPage.xaml">
+=======
     <Page Include="AddNewItem.xaml">
+>>>>>>> origin/Dev
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

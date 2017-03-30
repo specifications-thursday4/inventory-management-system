@@ -16,39 +16,33 @@ using System.Windows.Shapes;
 namespace _8BitIMS
 {
     /// <summary>
-    /// Interaction logic for MainPage.xaml
+    /// Interaction logic for IMSMainPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class IMSMainPage : Page
     {
-        
-        public MainPage()
+        public IMSMainPage()
         {
             InitializeComponent();
         }
 
-        private void POS(object sender, RoutedEventArgs e)
+        private void Inventory_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.NavigationService.Navigate(new Uri("UpdateInventory.xaml", UriKind.Relative));
         }
-<<<<<<< HEAD
-        
-        private void IMS(object sender, RoutedEventArgs e)
-=======
 
         private void Add_Item(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
+
         }
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.NavigationService.Navigate(new Uri("MainPage.xaml", UriKind.Relative));
         }
 
         private void View_Detail(object sender, RoutedEventArgs e)
->>>>>>> origin/Dev
         {
-            this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
+
         }
     }
 }
