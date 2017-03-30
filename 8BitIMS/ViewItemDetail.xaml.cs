@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace _8BitIMS
 {
     /// <summary>
-    /// Interaction logic for MainPage.xaml
+    /// Interaction logic for ViewItemDetail.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class ViewItemDetail : Page
     {
-        
-        public MainPage()
+        public ViewItemDetail()
         {
             InitializeComponent();
-        }
-
-        private void POS(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("POSMainPage.xaml", UriKind.Relative));
-        }
-        
-        private void IMS(object sender, RoutedEventArgs e)
-
-        {
-            this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
         }
     }
 }

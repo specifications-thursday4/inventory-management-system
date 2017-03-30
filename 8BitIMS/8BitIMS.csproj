@@ -127,11 +127,23 @@
     </Compile>
     <Compile Include="Games.cs" />
     <Compile Include="Platforms.cs" />
+    <Compile Include="POSMainPage.xaml.cs">
+      <DependentUpon>POSMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QuickAdd.xaml.cs">
       <DependentUpon>QuickAdd.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateInventory.xaml.cs">
       <DependentUpon>UpdateInventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCartPage.xaml.cs">
+      <DependentUpon>ViewCartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCategoryPage.xaml.cs">
+      <DependentUpon>ViewCategoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewItemDetail.xaml.cs">
+      <DependentUpon>ViewItemDetail.xaml</DependentUpon>
     </Compile>
     <Page Include="IMSMainPage.xaml">
       <SubType>Designer</SubType>
@@ -161,11 +173,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="POSMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="QuickAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateInventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewCartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewCategoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewItemDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
