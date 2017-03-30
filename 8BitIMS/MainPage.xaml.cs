@@ -33,7 +33,7 @@ namespace _8BitIMS
 
         private void Add_Item(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
         }
 
         private void Exit(object sender, RoutedEventArgs e)

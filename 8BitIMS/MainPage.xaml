@@ -9,15 +9,20 @@
       Title="MainPage">
 
     <Grid Background="LightSkyBlue">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        <Canvas>
+            <Image Source="res/bg.png" Width="640" Height="540"/>
+        </Canvas>
         <Button Style="{StaticResource QuestionBlock}" Click="Inventory_Click" Margin="80,385,490,45" Height="Auto" Width="Auto"/>
         <Button Style="{StaticResource QuestionBlock}" Click="Exit" Margin="430,385,100,45" Height="Auto" Width="Auto"/>
         <Button Style="{StaticResource QuestionBlock}" Click="Add_Item" Height="Auto" Margin="80,45,495,385" Width="Auto"/>
         <Button Style="{StaticResource QuestionBlock}" Click="View_Detail" Margin="430,45,100,385" Width="Auto" Height="Auto"/>
+        
         <Canvas>
             <Image Source="res/exit.png" Height="85" Canvas.Left="410" Canvas.Top="330" Width="165"/>
         </Canvas>
@@ -33,6 +38,7 @@
         <Canvas>
             <Image Source="res/logo.png" Height="180" Canvas.Top="170" Canvas.Left="60" Width="550"/>
         </Canvas>
+        
 
     </Grid>
 

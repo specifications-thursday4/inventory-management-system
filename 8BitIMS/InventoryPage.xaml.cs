@@ -146,6 +146,8 @@ namespace _8BitIMS
             InventoryFieldGeneration(MainWindow.tableNameFromButtonClickedInPage);
         }
 
+       
+
         
     }
 }

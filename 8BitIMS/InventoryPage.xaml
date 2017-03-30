@@ -1,4 +1,4 @@
-﻿<Page x:Class="_8BitIMS.InventoryPage"
+<Page x:Class="_8BitIMS.InventoryPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,6 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="640"
       Title="InventoryPage">
+
     
 
     <Canvas Background="LightSkyBlue" Width="640" Height="540">
@@ -19,6 +20,7 @@
             Height="440"
             Canvas.Top="60">      
             <Grid>
+
                
                 <Grid.ColumnDefinitions>                
                     <ColumnDefinition Width="Auto"/>                    
