@@ -102,6 +102,11 @@ namespace _8BitIMS
         {
             this.NavigationService.Navigate(new Uri("POSMainPage.xaml", UriKind.Relative));
         }
+
+        private void ClickViewCart(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("ViewCartPage.xaml", UriKind.Relative));
+        }
     }
 
 }

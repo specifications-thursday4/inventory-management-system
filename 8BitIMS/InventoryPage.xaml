@@ -10,7 +10,7 @@
 
     
 
-    <Canvas Background="LightSkyBlue" Width="640" Height="540">
+    <Canvas Background="DarkBlue" Width="640" Height="540">
 
         <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" Click="Back"/>
 
@@ -19,7 +19,7 @@
             Width="640"   
             Height="440"
             Canvas.Top="60">      
-            <Grid>
+            <Grid Background="LightSkyBlue">
 
                
                 <Grid.ColumnDefinitions>                

@@ -7,16 +7,17 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="ViewCategoryPage">
 
-    <Canvas Background="LightSkyBlue" Width="640" Height="540">
+    <Canvas Background="DarkBlue" Width="640" Height="540">
 
         <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" Click="Back"/>
+        <Button Content="View Cart"  Click="ClickViewCart" Canvas.Right="16"/>
 
         <ScrollViewer    
             Name="Scroller"  
             Width="640"   
             Height="440"
             Canvas.Top="60">
-            <Grid>
+            <Grid Background="LightSkyBlue">
 
 
                 <Grid.ColumnDefinitions>
