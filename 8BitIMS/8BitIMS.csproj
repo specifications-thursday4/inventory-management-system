@@ -134,6 +134,9 @@
       <DependentUpon>UpdateInventory.xaml</DependentUpon>
     </Compile>
     <Page Include="IMSMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddNewItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
