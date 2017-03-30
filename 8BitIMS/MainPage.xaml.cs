@@ -30,23 +30,9 @@ namespace _8BitIMS
         {
             
         }
-<<<<<<< HEAD
         
         private void IMS(object sender, RoutedEventArgs e)
-=======
 
-        private void Add_Item(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
-        }
-
-        private void Exit(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void View_Detail(object sender, RoutedEventArgs e)
->>>>>>> origin/Dev
         {
             this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
         }
