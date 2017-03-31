@@ -45,6 +45,8 @@ namespace _8BitIMS
             //SetUpTables();
             //gatherData();
             //populateData();
+
+
         }
 
         /// <summary>
@@ -154,8 +156,6 @@ namespace _8BitIMS
                     }
             }
 
-            
-            
             conn.Close();*/
             
         }

@@ -38,6 +38,10 @@ namespace _8BitIMS
 
             this.NavigationService.Navigate(new Uri("ViewCategoryPage.xaml", UriKind.Relative));
         }
-        
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("MainPage.xaml", UriKind.Relative));
+        }
     }
 }

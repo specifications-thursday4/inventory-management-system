@@ -23,12 +23,12 @@
         </Canvas>
         <Canvas Margin="390,100,150,315">
             <Button Style="{StaticResource QuestionBlock}" Name="Games" Canvas.Left="10" Canvas.Top="-25" Click="ButtonClick"/>
-            <Button Style="{StaticResource QuestionBlock}" x:Name="Back" Canvas.Left="10" Canvas.Top="150" Click="ExitClick"/>
-            <Image Source="res/exit.png" Height="34" Canvas.Left="-10" Canvas.Top="270" Width="149"/>
+            <Button Style="{StaticResource Mario}" x:Name="Back" Canvas.Left="20" Canvas.Top="150" Click="ExitClick"/>
+            <Image Source="res/exit.png" Height="34" Canvas.Left="-15" Canvas.Top="270" Width="149"/>
         </Canvas>
         <Canvas>
             <Image Source="res/consoles.png" Height="34" Canvas.Left="116" Canvas.Top="200" Width="149"/>
-            
+     
         </Canvas>
     </Grid>
 </Page>
