@@ -14,6 +14,9 @@
 * added misc button to add, needs its own png label
 * quick add has minor error handling (only whitespace/blank check), uses bool resultReturn to change states
 * added a "screenState" variable in addnewitem to parse text differently depending on which screen is being used
+* added more add logic so that you can add games and platforms properly, multiplat needs work- see issues
+* changed a few buttons and colors
+* changed the cart system a bit, still don't have prices showing and adding to cart doesn't work
 
 ## needs:
 
@@ -22,3 +25,9 @@
 * get quick add completely working
 * get POS at least showing all the inventory for customers
 * need to set tabbing order in quick add
+* need a way to set price and quant for multiplat games
+* get cart system to work
+* get game info pages to work for POS
+
+## issues
+* When adding a game to multiple platforms the second platform id always is 0 so it doesn't add to the database correctly
