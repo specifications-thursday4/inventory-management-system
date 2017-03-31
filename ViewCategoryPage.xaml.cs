@@ -35,6 +35,7 @@ namespace _8BitIMS
             SQLiteConnection conn = new SQLiteConnection(DATABASE);
             conn.Open();
             var command = conn.CreateCommand();
+            consoleLabel.Content = tableName;
 
             command.CommandText = "SELECT id FROM platforms WHERE name = '" + tableName + "'";
             platID = (int)command.ExecuteScalar();
