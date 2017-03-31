@@ -133,6 +133,7 @@
     <Compile Include="QuickAdd.xaml.cs">
       <DependentUpon>QuickAdd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RandomGenerator.cs" />
     <Compile Include="UpdateInventory.xaml.cs">
       <DependentUpon>UpdateInventory.xaml</DependentUpon>
     </Compile>

@@ -12,21 +12,23 @@
         <Canvas>
 
             <Image Source="res/otherscreen.png" Width="640"/>
-            <Button Style="{StaticResource QuestionBlock}" x:Name="Back" Canvas.Left="270" Canvas.Top="240" Click="ExitClick"/>
+            
         </Canvas>
         <Canvas>
             <Button Style="{StaticResource QuestionBlock}" Name="Console" Canvas.Left="140" Canvas.Top="75" Click="ButtonClick"/>
-
+            <Button Style="{StaticResource QuestionBlock}" Name="Misc" Canvas.Left="140" Canvas.Top="255" Click="ButtonClick"/>
         </Canvas>
         <Canvas>
             <Image Source="res/games.png" Height="34" Canvas.Left="360" Canvas.Top="200" Width="194"/>
         </Canvas>
         <Canvas Margin="390,100,150,315">
             <Button Style="{StaticResource QuestionBlock}" Name="Games" Canvas.Left="10" Canvas.Top="-25" Click="ButtonClick"/>
+            <Button Style="{StaticResource QuestionBlock}" x:Name="Back" Canvas.Left="10" Canvas.Top="150" Click="ExitClick"/>
+            <Image Source="res/exit.png" Height="34" Canvas.Left="-10" Canvas.Top="270" Width="149"/>
         </Canvas>
         <Canvas>
             <Image Source="res/consoles.png" Height="34" Canvas.Left="116" Canvas.Top="200" Width="149"/>
-            <Image Source="res/exit.png" Height="34" Canvas.Left="250" Canvas.Top="365" Width="149"/>
+            
         </Canvas>
     </Grid>
 </Page>

@@ -29,9 +29,22 @@ namespace _8BitIMS
 
         public DatabaseInit()
         {
+            //SQLiteConnection conn = new SQLiteConnection("Data Source = inventory.db");
+            //conn.Open();
+
+
+            //var command = conn.CreateCommand();
+            //command.CommandText = "ALTER TABLE platforms " +
+            //    "ADD price int";
+            //command.ExecuteNonQuery();
+
+            //command.CommandText = "ALTER TABLE games " +
+            //    "ADD price int";
+            //command.ExecuteNonQuery();
+
             //SetUpTables();
             //gatherData();
-           // populateData();
+            //populateData();
         }
 
         /// <summary>
@@ -159,6 +172,7 @@ namespace _8BitIMS
                 + " id int PRIMARY KEY,"
                 + " name text NOT NULL,"
                 + " quantity int NOT NULL"
+                + " price int"
                 + ");";
             command.ExecuteNonQuery();
 
@@ -167,6 +181,7 @@ namespace _8BitIMS
                + " id int PRIMARY KEY," 
                + " name text NOT NULL," 
                + " quantity int NOT NULL"
+               + " price int"
                + ");";
             command.ExecuteNonQuery();
 
