@@ -252,59 +252,21 @@ namespace _8BitIMS
                 resultReturn = false;
             }
 
-            if (screenState == 0) // if adding a console
+            if (resultReturn == true)
             {
-
-
-                int id = randomID;
-                string name = itemName.Text;
-                string quantity = amount.Text;
-                string price = priceText.Text;
-
-
-                // need in-box column
-                command.CommandText = "INSERT into platforms (id, name, quantity, price)"
-                    + "VALUES(@id,@name,@quant, @price)";
-
-                command.Parameters.AddWithValue("@id", id);
-                command.Parameters.AddWithValue("@name", name);
-                command.Parameters.AddWithValue("@quant", quantity);
-                command.Parameters.AddWithValue("@price", price);
-                command.ExecuteReader();
-            }
-            else if (screenState == 1) // if adding a game
-            {
-                int id = randomID;
-                string name = itemName.Text;
-                string quantity = amount.Text;
-                string price = priceText.Text;
-
-
-                var resultArr = consoleText.Text.Split(',');
-                long[] plats = { 0 };
-
-                // if multiple consoles then get their platform ids
-                // to allow for multiplate game updates
-                if (resultArr.Length < 1)
+                if (screenState == 0) // if adding a console
                 {
-                    for (var i = 0; i < resultArr.Length; i++)
-                    {
-                        command.CommandText = "SELECT id from platforms"
-                        + "WHERE name =" + resultArr[i];
-                        plats[i] = (long)command.ExecuteScalar();
-                        Console.WriteLine(command.ExecuteScalar());
-                    }
 
-                    //command.CommandText = "Update multiplate_games"
-                    //          + "SET quantity = " + quantity;
-                }
 
-                // How to assign a platform? and need in-box column
-                else // only one result, enter the game
-                {
-                    command.CommandText = "INSERT into games " +
-                        "(id, name, quantity, price)" +
-                        "VALUES(@id,@name,@quant, @price)";
+                    int id = randomID;
+                    string name = itemName.Text;
+                    string quantity = amount.Text;
+                    string price = priceText.Text;
+
+
+                    // need in-box column
+                    command.CommandText = "INSERT into platforms (id, name, quantity, price)"
+                        + "VALUES(@id,@name,@quant, @price)";
 
                     command.Parameters.AddWithValue("@id", id);
                     command.Parameters.AddWithValue("@name", name);
@@ -312,12 +274,49 @@ namespace _8BitIMS
                     command.Parameters.AddWithValue("@price", price);
                     command.ExecuteReader();
                 }
+                else if (screenState == 1) // if adding a game
+                {
+                    int id = randomID;
+                    string name = itemName.Text;
+                    string quantity = amount.Text;
+                    string price = priceText.Text;
+
+
+                    var resultArr = consoleText.Text.Split(',');
+                    long[] plats = { 0 };
+
+                    // if multiple consoles then get their platform ids
+                    // to allow for multiplate game updates
+                    if (resultArr.Length < 1)
+                    {
+                        for (var i = 0; i < resultArr.Length; i++)
+                        {
+                            command.CommandText = "SELECT id from platforms"
+                            + "WHERE name =" + resultArr[i];
+                            plats[i] = (long)command.ExecuteScalar();
+                            Console.WriteLine(command.ExecuteScalar());
+                        }
+
+                        //command.CommandText = "Update multiplate_games"
+                        //          + "SET quantity = " + quantity;
+                    }
+
+                    // How to assign a platform? and need in-box column
+                    else // only one result, enter the game
+                    {
+                        command.CommandText = "INSERT into games " +
+                            "(id, name, quantity, price)" +
+                            "VALUES(@id,@name,@quant, @price)";
+
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@name", name);
+                        command.Parameters.AddWithValue("@quant", quantity);
+                        command.Parameters.AddWithValue("@price", price);
+                        command.ExecuteReader();
+                    }
+                }
+                this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
             }
-            if (resultReturn == true)
-            {
-                 this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
-            }
-           
         }
 
         private void cancelEvent(object sender, EventArgs e)
