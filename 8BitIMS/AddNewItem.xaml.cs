@@ -65,6 +65,7 @@ namespace _8BitIMS
             Screen.Children.Add(Info1);
             Screen.Children.Add(Confirm);
             Screen.Children.Add(Cancel);
+            Cancel.Click += cancelEvent;
 
             if (type.Equals("Console")) {
                 Screen.Children.Remove(console);
@@ -105,8 +106,6 @@ namespace _8BitIMS
                 Cancel.Width = 75;
                 Cancel.Margin = new Thickness(385, 280, 180, 235);
 
-              
-
             }
             else if (type.Equals("Games"))
             {
@@ -144,7 +143,7 @@ namespace _8BitIMS
 
                 consoleText.Height = 25;
                 consoleText.Width = 100;
-                console.Margin = new Thickness(325, 220, 180, 295);
+                consoleText.Margin = new Thickness(325, 220, 180, 295);
 
                 Confirm.Content = "Confirm";
                 Cancel.Content = "Cancel";
@@ -158,6 +157,11 @@ namespace _8BitIMS
                 Cancel.Margin = new Thickness(385, 280, 180, 235);
 
             }
+        }
+
+        private void cancelEvent(object sender, EventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
         }
 
         private void ParseEntry()
