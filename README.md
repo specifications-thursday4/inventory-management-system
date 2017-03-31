@@ -12,7 +12,8 @@
 * fixed textbox on add game screen
 * added in-box to add window, doesn't work with database
 * added misc button to add, needs its own png label
-* quick add has minor error handling (only whitespace/blank check)
+* quick add has minor error handling (only whitespace/blank check), uses bool resultReturn to change states
+* added a "screenState" variable in addnewitem to parse text differently depending on which screen is being used
 
 ## needs:
 
