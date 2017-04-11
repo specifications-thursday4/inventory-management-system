@@ -21,7 +21,7 @@ namespace _8BitIMS
         private static string DATABASE = "Data Source = inventory.db";
         private static string URL_GAMES = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=id,name&limit=50&offset=";
         private static string URL_PLATS = "https://igdbcom-internet-game-database-v1.p.mashape.com/platforms/?fields=id,name,games&limit=50&offset=";
-        private static string APIKEY = "ZiFOOa8MinmshtGhh0BFXTRsj1Avp1YoihcjsnPU3JAvg3UGPJ";
+        private static string APIKEY = "77DAy1j2rVmsh9SNYVKUuEQOjmpZp1yRFoqjsn93JPhTd4z7zk";
         private static string ACCEPT = "application/json";
         private List<Games> gamesList = new List<Games>();              // List of all game data from the IGDB
         private List<Platforms> platsList = new List<Platforms>();      // List of all platform data from IGDB
@@ -29,9 +29,24 @@ namespace _8BitIMS
 
         public DatabaseInit()
         {
+            //SQLiteConnection conn = new SQLiteConnection("Data Source = inventory.db");
+            //conn.Open();
+
+
+            //var command = conn.CreateCommand();
+            //command.CommandText = "ALTER TABLE platforms " +
+            //    "ADD price int";
+            //command.ExecuteNonQuery();
+
+            //command.CommandText = "ALTER TABLE games " +
+            //    "ADD price int";
+            //command.ExecuteNonQuery();
+
             //SetUpTables();
             //gatherData();
             //populateData();
+
+
         }
 
         /// <summary>
@@ -141,8 +156,6 @@ namespace _8BitIMS
                     }
             }
 
-            
-            
             conn.Close();*/
             
         }
@@ -159,6 +172,7 @@ namespace _8BitIMS
                 + " id int PRIMARY KEY,"
                 + " name text NOT NULL,"
                 + " quantity int NOT NULL"
+                + " price int"
                 + ");";
             command.ExecuteNonQuery();
 
@@ -167,6 +181,7 @@ namespace _8BitIMS
                + " id int PRIMARY KEY," 
                + " name text NOT NULL," 
                + " quantity int NOT NULL"
+               + " price int"
                + ");";
             command.ExecuteNonQuery();
 

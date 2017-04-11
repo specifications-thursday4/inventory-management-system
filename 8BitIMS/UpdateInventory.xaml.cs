@@ -66,6 +66,11 @@ namespace _8BitIMS
             MainWindow.tableNameFromButtonClickedInPage = btnSent.Content.ToString();
             this.NavigationService.Navigate(new Uri("InventoryPage.xaml", UriKind.Relative));
         }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
+        }
     }
     
 }

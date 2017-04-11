@@ -29,7 +29,7 @@ namespace _8BitIMS
         {
             InitializeComponent();
             DatabaseInit db = new DatabaseInit();
-            
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         private void TestQuery()

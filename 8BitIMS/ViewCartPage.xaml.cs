@@ -24,5 +24,10 @@ namespace _8BitIMS
         {
             InitializeComponent();
         }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
     }
 }

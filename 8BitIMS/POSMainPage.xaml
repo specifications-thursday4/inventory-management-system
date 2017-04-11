@@ -6,18 +6,29 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="POSMainPage">
+    <Canvas Background="#003399" Width="640" Height="540">
 
-    <Grid Background="LightSkyBlue">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Canvas Grid.Row="0">
-            <Button Content="ViewCart" Click= "ClickViewCart" Canvas.Right="0"/>
-        </Canvas>
-        <!--Temporary button to get to next screen-->
-        <Canvas Grid.Row="1">
-            <Button Content="Neo Geo MVS" Click="ClickCategory" Canvas.Right="50" Canvas.Top="150"/>
-        </Canvas>
-    </Grid>
+        <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" Click="Back"/>
+        <Button Content="View Cart"  Click="ClickViewCart" Canvas.Right="16"/>
+
+        <ScrollViewer    
+            Name="Scroller"  
+            Width="640"   
+            Height="440"
+            Canvas.Top="60">
+
+            <Grid Background="LightSkyBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--Temporary button to get to next screen-->
+                    <Canvas Grid.Row="1">
+                        <Button Content="Neo Geo MVS" Click="ClickCategory" Canvas.Right="50" Canvas.Top="150"/>
+                    </Canvas>
+                </Grid>
+
+        </ScrollViewer>
+    </Canvas>
+
 </Page>

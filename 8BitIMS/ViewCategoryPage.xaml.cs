@@ -35,6 +35,7 @@ namespace _8BitIMS
             SQLiteConnection conn = new SQLiteConnection(DATABASE);
             conn.Open();
             var command = conn.CreateCommand();
+            consoleLabel.Content = tableName;
 
             command.CommandText = "SELECT id FROM platforms WHERE name = '" + tableName + "'";
             platID = (int)command.ExecuteScalar();
@@ -55,7 +56,7 @@ namespace _8BitIMS
             Qty.Children.Add(qty);
             Price.Children.Add(price);
 
-            command.CommandText = "SELECT g.name, m.quantity FROM games g INNER JOIN ("
+            command.CommandText = "SELECT g.name, m.quantity, g.price FROM games g INNER JOIN ("
                + " SELECT game_id, quantity FROM multiplat_games WHERE platform_id = ("
                + " SELECT id FROM platforms WHERE name = '" + tableName + "'"
                + "))m O"
@@ -70,11 +71,13 @@ namespace _8BitIMS
             {
                 Label gameLabel = new Label();
                 Label quantity = new Label();
+                //Label priceLabel = new Label();
+
                 gameLabel.Content = sdr.GetString(0);
 
                 quantity.Content = sdr.GetInt32(1);
 
-
+                //priceLabel.Content = sdr.GetInt32(2);
 
                 GameColumn.Children.Add(gameLabel);
                 Qty.Children.Add(quantity);
@@ -91,13 +94,21 @@ namespace _8BitIMS
             {
                 addCartButton[i] = new Button();
                 addCartButton[i].Content = "Add To Cart";
-                addCartButton[i].Margin = new Thickness(0, 5, 0, 3);
+                addCartButton[i].Margin = new Thickness(0, 7, 0, 3);
+                addCartButton[i].Click += confirmEvent;
                 AddToCart.Children.Add(addCartButton[i]);
             }
 
 
             conn.Close();
         }
+
+        private void confirmEvent(object sender, RoutedEventArgs e)
+        {
+            // add item to cart, how to get id of item clicked?
+
+        }
+
         private void Back(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Uri("POSMainPage.xaml", UriKind.Relative));
