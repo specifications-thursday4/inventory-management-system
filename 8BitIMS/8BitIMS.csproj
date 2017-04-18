@@ -307,6 +307,32 @@
   <ItemGroup>
     <Resource Include="res\marioclick.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\8bitlogo1.png" />
+    <Resource Include="img\8bitlogo10.png" />
+    <Resource Include="img\8bitlogo11.png" />
+    <Resource Include="img\8bitlogo12.png" />
+    <Resource Include="img\8bitlogo2.png" />
+    <Resource Include="img\8bitlogo3.png" />
+    <Resource Include="img\8bitlogo4.png" />
+    <Resource Include="img\8bitlogo5.png" />
+    <Resource Include="img\8bitlogo6.png" />
+    <Resource Include="img\8bitlogo7.png" />
+    <Resource Include="img\8bitlogo8.png" />
+    <Resource Include="img\8bitlogo9.png" />
+    <Resource Include="img\bgp.png" />
+    <Resource Include="img\nintendo.png" />
+    <Resource Include="img\nintendop.png" />
+    <Resource Include="img\ps.png" />
+    <Resource Include="img\psp.png" />
+    <Resource Include="img\readme.txt" />
+    <Resource Include="img\sonicwallpaper.jpg" />
+    <Resource Include="img\spin.png" />
+    <Resource Include="img\wii.png" />
+    <Resource Include="img\wiip.png" />
+    <Resource Include="img\xbox.png" />
+    <Resource Include="img\xboxp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.104.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.104.0\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
