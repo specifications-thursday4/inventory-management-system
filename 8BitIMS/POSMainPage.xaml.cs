@@ -166,13 +166,7 @@ namespace _8BitIMS
 
         private void logo_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                System.Diagnostics.Process.Start("https://www.facebook.com/8bithalloffame");
-            }
-            catch
-            {
-            }
+            this.NavigationService.Navigate(new Uri("MainPage.xaml", UriKind.Relative));
         }
 
         private void logorotateC()                          //clockwise

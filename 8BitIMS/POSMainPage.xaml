@@ -42,47 +42,50 @@
 
 
     </Page.Resources>
-
-    <Grid Opacity="2" >
-        <Grid.Background>
-            <ImageBrush ImageSource="img/bgp.png" Stretch="UniformToFill" Opacity="0.65"/>
-        </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Canvas Grid.Row="0">
-            <Button Content="ViewCart" Click= "ClickViewCart" Canvas.Right="0" Canvas.Left="23" Canvas.Top="30" RenderTransformOrigin="-0.448,0.585"/>
-        </Canvas>
-        
-        <!--Spinner Code-->
-        <Canvas Grid.Row="1" MouseWheel="Canvas_MouseWheel_1"  HorizontalAlignment="Left" Height="509" Margin="10,0,0,0" VerticalAlignment="Top" Width="622">
-            
+    <Canvas Background="LightSkyBlue">
 
 
-            <Image Height="100" Canvas.Left="188" Canvas.Top="101" Width="100"/>
-            <Image HorizontalAlignment="Left" Height="538" VerticalAlignment="Top" Width="323" Source="img/spin.png" Canvas.Left="335" Opacity="0.95"/>
-            <Button Cursor="Hand" BorderThickness="0"  
+        <Grid Opacity="2" >
+            <Grid.Background>
+                <ImageBrush ImageSource="res/bg.png" Stretch="UniformToFill" Opacity="0.65"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Canvas Grid.Row="0">
+                <Button Content="ViewCart" Click= "ClickViewCart" Canvas.Right="0" Canvas.Left="23" Canvas.Top="30" RenderTransformOrigin="-0.448,0.585"/>
+            </Canvas>
+
+            <!--Spinner Code-->
+            <Canvas Grid.Row="1" MouseWheel="Canvas_MouseWheel_1"  HorizontalAlignment="Left" Height="509" Margin="10,0,0,0" VerticalAlignment="Top" Width="622">
+
+
+
+                <Image Height="100" Canvas.Left="188" Canvas.Top="101" Width="100"/>
+                <Image HorizontalAlignment="Left" Height="538" VerticalAlignment="Top" Width="323" Source="img/spin.png" Canvas.Left="335" Opacity="0.95"/>
+                <Button Cursor="Hand" BorderThickness="0"  
     Style="{StaticResource TransparentStyle }" Click="button1_Click" Padding="0"   MouseEnter="button1_MouseEnter" MouseLeave="button1_MouseLeave"  Name="button1" Canvas.Left="383" Canvas.Top="63" Height="62" Width="132" RenderTransformOrigin="0.336,0.449">
 
-                <DynamicResource ResourceKey="x"/>
-            </Button>
-            <Button Cursor="Hand" BorderThickness="0"  
+                    <DynamicResource ResourceKey="x"/>
+                </Button>
+                <Button Cursor="Hand" BorderThickness="0"  
     Style="{StaticResource TransparentStyle }" Click="button2_Click" Padding="0"   MouseEnter="button2_MouseEnter" MouseLeave="button2_MouseLeave"  Name="button2" Canvas.Left="353" Canvas.Top="208" Height="63" Width="105" RenderTransformOrigin="0.336,0.449">
 
-                <DynamicResource ResourceKey="n"/>
-            </Button>
+                    <DynamicResource ResourceKey="n"/>
+                </Button>
 
-            <Button Cursor="Hand" BorderThickness="0"  
+                <Button Cursor="Hand" BorderThickness="0"  
     Style="{StaticResource TransparentStyle }" Click="button3_Click" Padding="0"  MouseEnter="button3_MouseEnter" MouseLeave="button3_MouseLeave"  Name="button3" Canvas.Left="383" Canvas.Top="341" Height="76" Width="107" RenderTransformOrigin="0.336,0.449">
 
-                <DynamicResource ResourceKey="p"/>
-            </Button>
-            <Button Cursor="Hand" BorderThickness="0"  
+                    <DynamicResource ResourceKey="p"/>
+                </Button>
+                <Button Cursor="Hand" BorderThickness="0"  
     Style="{StaticResource TransparentStyle }" Click="logo_Click" Padding="0"     Name="logo" Canvas.Left="496" Canvas.Top="208" Height="100" Width="104" RenderTransformOrigin="0.336,0.449">
-                <DynamicResource ResourceKey="logo1"/>
-            </Button>
+                    <DynamicResource ResourceKey="logo1"/>
+                </Button>
 
-        </Canvas>
-    </Grid>
+            </Canvas>
+        </Grid>
+    </Canvas>
 </Page>
