@@ -23,6 +23,9 @@ namespace _8BitIMS
     {
         List<string> imageKeyList = new List<string>();
         List<string> logoKeyList = new List<string>();
+        int b1 = 0;
+        int b2 = 1;
+        int b3 = 2;
 
         public POSMainPage()
         {
@@ -31,9 +34,26 @@ namespace _8BitIMS
             imageKeyList.Add("n");
             imageKeyList.Add("p");
             imageKeyList.Add("w");
+            imageKeyList.Add("nfcds");// nintendo family disk system
+            imageKeyList.Add("ngc");//gamecube
+            imageKeyList.Add("nes");//nintendo entertainment system
+            imageKeyList.Add("ns");//switch
+            imageKeyList.Add("ouya");// lenovo fun
+            imageKeyList.Add("pc");// duh
+            imageKeyList.Add("pcd");//pcdos
+            imageKeyList.Add("ps2");
+            imageKeyList.Add("ps3");
+            imageKeyList.Add("ps4");
+            Console.Write(imageKeyList.Count());
+            
 
 
-            for(int i=1; i <= 12; i++) {
+            button1.Content = FindResource(imageKeyList[b1]);
+            button2.Content = FindResource(imageKeyList[b2]);
+            button3.Content = FindResource(imageKeyList[b3]); 
+
+
+            for (int i=1; i <= 12; i++) {
                 logoKeyList.Add("logo" + i.ToString());
             }
 
@@ -104,61 +124,24 @@ namespace _8BitIMS
             if (e.Delta < 0)      // scroll toward user
             {
                 logorotateCC();
-                if (button3.Content.GetHashCode() == FindResource(imageKeyList[imageKeyList.Count - 1]).GetHashCode())
-                {  // if the third button have the last image of the list
-
-                    button3.Content = button2.Content;
-                    button2.Content = button1.Content;
-                    button1.Content = FindResource(imageKeyList[0]);
-                }
-                else
-                {
-                    int index = 0;
-                    foreach (String str in imageKeyList)
-                    {
-                        if (FindResource(str).GetHashCode() == button3.Content.GetHashCode())
-                        {
-                            index = imageKeyList.IndexOf(str);
-                        }
-                    }
-
-                    button3.Content = button2.Content;
-                    button2.Content = button1.Content;
-                    button1.Content = FindResource(imageKeyList[index + 1]);
-                }
+                b1 = (imageKeyList.Count + (b1 - 1)) % imageKeyList.Count;
+                b2 = (imageKeyList.Count + (b2 - 1)) % imageKeyList.Count;
+                b3 = (imageKeyList.Count + (b3 - 1)) % imageKeyList.Count;
+                button1.Content = FindResource(imageKeyList[b1]);
+                button2.Content = FindResource(imageKeyList[b2]);
+                button3.Content = FindResource(imageKeyList[b3]);
 
             }
             else       // scroll away user
             {
                 logorotateC();
-                if (button1.Content.GetHashCode() == FindResource(imageKeyList[0]).GetHashCode())
-                {
-                    button1.Content = button2.Content;
-                    button2.Content = button3.Content;
+                b1 = (imageKeyList.Count + (b1 +1)) % imageKeyList.Count;
+                b2 = (imageKeyList.Count + (b2 + 1)) % imageKeyList.Count;
+                b3 = (imageKeyList.Count + (b3 + 1)) % imageKeyList.Count;
+                button1.Content = FindResource(imageKeyList[b1]);
+                button2.Content = FindResource(imageKeyList[b2]);
+                button3.Content = FindResource(imageKeyList[b3]);
 
-                    button3.Content = FindResource(imageKeyList[imageKeyList.Count - 1]);
-
-                }
-                else  // button1 doesnt have  first element of the list
-                {
-                    int i = 0; //index
-                    foreach (String str in imageKeyList)
-                    {
-                        if (FindResource(str).GetHashCode() == button1.Content.GetHashCode())
-                        {
-                            i = imageKeyList.IndexOf(str);                          // finding index of that image in the list
-
-
-
-
-                        }
-                    }
-                    button1.Content = button2.Content;
-                    button2.Content = button3.Content;
-                    button3.Content = FindResource(imageKeyList[i - 1]);
-
-
-                }
             }
 
 
