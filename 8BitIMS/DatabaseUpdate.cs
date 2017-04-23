@@ -153,7 +153,7 @@ namespace _8BitIMS
                     command.ExecuteNonQuery();
                 }
                 sdr.Close();
-                
+
 
                 foreach (int i in plat.games)
                     foreach (Games title in gamesList)
@@ -173,13 +173,7 @@ namespace _8BitIMS
                         }
                     }
             }
-
             conn.Close();
-
         }
     }
-
-
-
-
 }

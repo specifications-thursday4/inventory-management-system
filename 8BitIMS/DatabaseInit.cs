@@ -30,7 +30,6 @@ namespace _8BitIMS
         public DatabaseInit()
         {
             SetUpTables();
-
         }
 
         /// <summary>
@@ -119,15 +118,16 @@ namespace _8BitIMS
                 + " id int PRIMARY KEY,"
                 + " name text NOT NULL,"
                 + " quantity int NOT NULL,"
-                + " price int"
+                + " price int,"
+                + " inBoxPrice int,"
+                + " inBoxQuantity int"
                 + ");";
             command.ExecuteNonQuery();
 
 
             command.CommandText = "CREATE TABLE IF NOT EXISTS games("
                + " id int PRIMARY KEY,"
-               + " name text NOT NULL,"
-               + " quantity int NOT NULL"
+               + " name text NOT NULL"
                + ");";
             command.ExecuteNonQuery();
 
@@ -137,7 +137,21 @@ namespace _8BitIMS
                 + " platform_id int NOT NULL,"
                 + " quantity int NOT NULL,"
                 + " price int,"
+                + " inBoxQuant int,"
+                + " inBoxPrice int,"
                 + " PRIMARY KEY(game_id, platform_id),"
+                + " CONSTRAINT fk_game_id FOREIGN KEY(game_id)REFERENCES games(id),"
+                + " CONSTRAINT fk_platform_id FOREIGN KEY(platform_id) REFERENCES platforms(id)"
+                + ");";
+            command.ExecuteNonQuery();
+
+
+            command.CommandText = "CREATE TABLE IF NOT EXISTS transactions("
+                + " transaction_id int NOT NULL, "
+                + " game_id int NOT NULL,"
+                + " platform_id int NOT NULL,"
+                + " quantity int NOT NULL,"
+                + " PRIMARY KEY(transaction_id),"
                 + " CONSTRAINT fk_game_id FOREIGN KEY(game_id)REFERENCES games(id),"
                 + " CONSTRAINT fk_platform_id FOREIGN KEY(platform_id) REFERENCES platforms(id)"
                 + ");";
