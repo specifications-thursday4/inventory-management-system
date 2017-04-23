@@ -20,9 +20,24 @@ namespace _8BitIMS
     /// </summary>
     public partial class QuickAdd : Page
     {
+        public static string typeToAddToInventory;
+
         public QuickAdd()
         {
             InitializeComponent();
+        }
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button btnClicked = (Button)sender;
+            typeToAddToInventory = btnClicked.Name;
+
+            this.NavigationService.Navigate(new Uri("AddNewItem.xaml", UriKind.Relative));
+        }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
         }
     }
 }

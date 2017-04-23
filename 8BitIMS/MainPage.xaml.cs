@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,24 +27,25 @@ namespace _8BitIMS
             InitializeComponent();
         }
 
-        private void Inventory_Click(object sender, RoutedEventArgs e)
+        private void POS(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("UpdateInventory.xaml", UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("POSMainPage.xaml", UriKind.Relative));
         }
+        
+        private void IMS(object sender, RoutedEventArgs e)
 
-        private void Add_Item(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
         }
+        private void Report(object sender, RoutedEventArgs e)
 
-        private void Exit(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.NavigationService.Navigate(new Uri("SummaryReports.xaml", UriKind.Relative));
         }
+        private void Update(object sender, RoutedEventArgs e)
 
-        private void View_Detail(object sender, RoutedEventArgs e)
         {
-
+            DatabaseUpdate db = new DatabaseUpdate();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +21,7 @@ namespace _8BitIMS
         private static string DATABASE = "Data Source = inventory.db";
         private static string URL_GAMES = "https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=id,name&limit=50&offset=";
         private static string URL_PLATS = "https://igdbcom-internet-game-database-v1.p.mashape.com/platforms/?fields=id,name,games&limit=50&offset=";
-        private static string APIKEY = "ZiFOOa8MinmshtGhh0BFXTRsj1Avp1YoihcjsnPU3JAvg3UGPJ";
+        private static string APIKEY = "77DAy1j2rVmsh9SNYVKUuEQOjmpZp1yRFoqjsn93JPhTd4z7zk";
         private static string ACCEPT = "application/json";
         private List<Games> gamesList = new List<Games>();              // List of all game data from the IGDB
         private List<Platforms> platsList = new List<Platforms>();      // List of all platform data from IGDB
@@ -29,9 +29,7 @@ namespace _8BitIMS
 
         public DatabaseInit()
         {
-            //SetUpTables();
-            //gatherData();
-            //populateData();
+            SetUpTables();
         }
 
         /// <summary>
@@ -40,10 +38,6 @@ namespace _8BitIMS
         /// </summary>
         private void gatherData()
         {
-            /*SQLiteConnection conn = new SQLiteConnection(DATABASE); // Sets up a new database connection
-            conn.Open();                                            // Opens the database for queries
-            var command = conn.CreateCommand();                     // Creates a command variable for SQL commands
-            */
 
             WebClient wc = new WebClient();                         // Webclient is used to scrape from a URL                
             JObject data = null;                                    // Retains the data from the URL in the form of JTokens
@@ -51,20 +45,19 @@ namespace _8BitIMS
             wc.Headers.Add("X-Mashape-Key", APIKEY);                // Adding the Headers to the WebClient - API token
             wc.Headers.Add("Accept", ACCEPT);                       // Telling the WebClient what to accept from the URL
 
-            
+
 
             const int MAX_PULL = 9900;
-            const int MAX_OFFSET = 50;                             
+            const int MAX_OFFSET = 50;
             int x = MAX_OFFSET;                                     // Offset value for pagination while getting data from IGDB
-            //int y = 0;                                              // Value for terminating loops
+
 
             do
             {
                 response = wc.DownloadString(URL_PLATS + x);
                 if (response.StartsWith("["))
                 {
-                   // y = 0;
-                    //while (y < MAX_OFFSET)
+
                     for (int i = 0; i < MAX_OFFSET; i++)
                     {
                         try
@@ -76,7 +69,6 @@ namespace _8BitIMS
                             var tokenObj = data["games"];
                             platform.games = tokenObj.ToObject<List<int>>();
                             platsList.Add(platform);
-                            //y++;
 
 
                             Console.WriteLine(data["name"]);
@@ -90,61 +82,28 @@ namespace _8BitIMS
                 x += MAX_OFFSET;
             } while (!response.StartsWith("[]"));
 
-            //x = y = 0;
-            //while (x <= MAX_PULL)
-            for(int i = 0; i <= MAX_PULL; i += MAX_OFFSET)
+
+            for (int i = 0; i <= MAX_PULL; i += MAX_OFFSET)
             {
                 response = wc.DownloadString(URL_GAMES + i);
                 if (response.StartsWith("["))
                 {
-                    //y = 0;
-                    //while (y < MAX_OFFSET)
-                    for(int j = 0; j < MAX_OFFSET; j++)
+
+                    for (int j = 0; j < MAX_OFFSET; j++)
                     {
                         Games game = new Games();
                         data = JsonConvert.DeserializeObject<List<JObject>>(response)[j];
                         game.id = (int)data["id"];
                         game.name = (string)data["name"];
                         gamesList.Add(game);
-                        //y++;
+
 
                         Console.WriteLine(data["name"]);
                     }
-                    //x += MAX_OFFSET;
-                    
                 }
-
-            }
-           /* foreach (Games game in gamesList)
-            {
-                command.CommandText = "INSERT INTO games(id, name, quantity) VALUES("
-                            + game.id + ",'" + game.name.Replace("'", "''") + "', 0);";
-                command.ExecuteNonQuery();
             }
 
-            foreach (Platforms plat in platsList)
-            {
 
-                command.CommandText = "INSERT INTO platforms(id, name, quantity) VALUES("
-                    + plat.id + ",'" + plat.name.Replace("'", "''") + "', 0);";
-                command.ExecuteNonQuery();
-
-                foreach (int i in plat.games)
-                    foreach (Games title in gamesList)
-                    {
-                        if (title.id == i)
-                        {
-                            command.CommandText = "INSERT INTO multiplat_games(game_id, platform_id, quantity) VALUES("
-                                + title.id + "," + plat.id + ", 0);";
-                            command.ExecuteNonQuery();
-                        }
-                    }
-            }
-
-            
-            
-            conn.Close();*/
-            
         }
 
         private void SetUpTables()
@@ -158,15 +117,17 @@ namespace _8BitIMS
             command.CommandText = "CREATE TABLE IF NOT EXISTS platforms("
                 + " id int PRIMARY KEY,"
                 + " name text NOT NULL,"
-                + " quantity int NOT NULL"
+                + " quantity int NOT NULL,"
+                + " price int,"
+                + " inBoxPrice int,"
+                + " inBoxQuantity int"
                 + ");";
             command.ExecuteNonQuery();
 
 
             command.CommandText = "CREATE TABLE IF NOT EXISTS games("
-               + " id int PRIMARY KEY," 
-               + " name text NOT NULL," 
-               + " quantity int NOT NULL"
+               + " id int PRIMARY KEY,"
+               + " name text NOT NULL"
                + ");";
             command.ExecuteNonQuery();
 
@@ -175,13 +136,39 @@ namespace _8BitIMS
                 + " game_id int NOT NULL,"
                 + " platform_id int NOT NULL,"
                 + " quantity int NOT NULL,"
+                + " price int,"
+                + " inBoxQuant int,"
+                + " inBoxPrice int,"
                 + " PRIMARY KEY(game_id, platform_id),"
                 + " CONSTRAINT fk_game_id FOREIGN KEY(game_id)REFERENCES games(id),"
                 + " CONSTRAINT fk_platform_id FOREIGN KEY(platform_id) REFERENCES platforms(id)"
                 + ");";
             command.ExecuteNonQuery();
 
+
+            command.CommandText = "CREATE TABLE IF NOT EXISTS transactions("
+                + " transaction_id int NOT NULL, "
+                + " game_id int NOT NULL,"
+                + " platform_id int NOT NULL,"
+                + " quantity int NOT NULL,"
+                + " PRIMARY KEY(transaction_id),"
+                + " CONSTRAINT fk_game_id FOREIGN KEY(game_id)REFERENCES games(id),"
+                + " CONSTRAINT fk_platform_id FOREIGN KEY(platform_id) REFERENCES platforms(id)"
+                + ");";
+            command.ExecuteNonQuery();
+
+            //Counts number of platforms in table. if less than 5 platforms then init database.
+            command.CommandText = "Select count(id) from platforms";
+            int result = int.Parse(command.ExecuteScalar().ToString());
+
+
             conn.Close();
+
+            if (result < 5)
+            {//since less than optimal amount of platforms, database initialzes.
+                gatherData();
+                populateData();
+            }
         }
 
         private void populateData()
@@ -219,7 +206,6 @@ namespace _8BitIMS
                         }
                     }
             }
-
             conn.Close();
 
         }
@@ -227,5 +213,5 @@ namespace _8BitIMS
 
 
 
-    
+
 }
