@@ -54,7 +54,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Canvas Grid.Row="0">
-                <Button Content="ViewCart" Click= "ClickViewCart" Canvas.Right="0" Canvas.Left="23" Canvas.Top="30" RenderTransformOrigin="-0.448,0.585"/>
+                <Button Style="{StaticResource Cart}" Click= "ClickViewCart" Canvas.Right="0" Canvas.Left="-14" Canvas.Top="-2"/>
             </Canvas>
 
             <!--Spinner Code-->

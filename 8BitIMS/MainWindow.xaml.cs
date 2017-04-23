@@ -14,8 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.Data.SQLite;
-
-
+using System.Threading;
 
 namespace _8BitIMS
 {
@@ -25,11 +24,17 @@ namespace _8BitIMS
     public partial class MainWindow : NavigationWindow
     {
         public static string tableNameFromButtonClickedInPage;
+        public static Brush[] colourArr = { Brushes.Violet, Brushes.AliceBlue, Brushes.Chartreuse, Brushes.LimeGreen, Brushes.LightYellow, Brushes.PeachPuff };
+   
         public MainWindow()
         {
-            InitializeComponent();
+        
+            
             DatabaseInit db = new DatabaseInit();
+          
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            InitializeComponent();
+            
         }
 
         private void TestQuery()
@@ -40,8 +45,10 @@ namespace _8BitIMS
             conn.Close();
         }
 
-        
-
        
+
+
+
+
     }
 }
