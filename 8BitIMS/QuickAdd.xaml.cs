@@ -34,5 +34,10 @@ namespace _8BitIMS
 
             this.NavigationService.Navigate(new Uri("AddNewItem.xaml", UriKind.Relative));
         }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
+        }
     }
 }

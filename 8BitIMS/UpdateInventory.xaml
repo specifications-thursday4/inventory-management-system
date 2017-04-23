@@ -7,9 +7,23 @@
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="640"
       Title="UpdateInventory">
-    <ScrollViewer Background="LightSkyBlue">
-        <WrapPanel Name="SystemsCategories">
-            
-        </WrapPanel>
-    </ScrollViewer>
+    <Canvas Background="#003399" Width="640" Height="540">
+
+        <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" Click="Back"/>
+
+        <ScrollViewer    
+            Name="Scroller"  
+            Width="640"   
+            Height="440"
+            Canvas.Top="60">
+            <Grid Background="LightSkyBlue">
+
+                <WrapPanel Name="SystemsCategories">
+
+                </WrapPanel>
+
+            </Grid>
+
+        </ScrollViewer>
+    </Canvas>
 </Page>

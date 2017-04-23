@@ -39,7 +39,7 @@ namespace _8BitIMS
             conn.Open();
             var command = conn.CreateCommand();
 
-            command.CommandText = "SELECT name FROM platforms";
+            command.CommandText = "SELECT name FROM platforms ORDER by name ASC";
             SQLiteDataReader sdr = command.ExecuteReader();
 
             
@@ -65,6 +65,11 @@ namespace _8BitIMS
             Button btnSent = (Button)sender;
             MainWindow.tableNameFromButtonClickedInPage = btnSent.Content.ToString();
             this.NavigationService.Navigate(new Uri("InventoryPage.xaml", UriKind.Relative));
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
         }
     }
     

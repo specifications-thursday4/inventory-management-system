@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace _8BitIMS
 {
     /// <summary>
-    /// Interaction logic for ViewCartPage.xaml
+    /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class ViewCartPage : Page
+    public partial class SummaryReports : Page
     {
-        public ViewCartPage()
+        public SummaryReports()
         {
             InitializeComponent();
-        }
-
-        private void Back(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.GoBack();
         }
     }
 }
