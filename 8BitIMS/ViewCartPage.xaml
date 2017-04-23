@@ -12,11 +12,22 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Cart" Grid.Column="0" HorizontalAlignment="Center"/>
+        <Label Content="Method of Payment" Grid.Column="0" HorizontalAlignment="Center"/>
+        <Canvas>
+
+            <Button Content="Cash" Canvas.Left="10" Canvas.Top="82" Height="82" Width="117" Background="Lime"/>
+            <Button Content="Refund" Canvas.Left="10" Canvas.Top="205" Height="82" Width="117" Background="Red"/>
+            <Button Content="Credit/Debit" Canvas.Left="180" Canvas.Top="82" Height="82" Width="117" Background="Peru"/>
+            <Button Content="Gift Card" Canvas.Left="180" Canvas.Top="205" Height="82" Width="117" Background="LightGoldenrodYellow"/>
+        </Canvas>
+
+        <Canvas>
+            
+        </Canvas>
         <Label Content= "Receipt" Grid.Column="1" HorizontalAlignment="Center"/>
-        <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Back" Height="53" Margin="10,0,0,0" Width="66"/>
+        <Button Style="{StaticResource Boom}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Back" Height="53" Width="66"/>
 
     </Grid>
-    
-    
+
+
 </Page>
