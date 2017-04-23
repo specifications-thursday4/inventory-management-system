@@ -39,7 +39,7 @@ namespace _8BitIMS
             conn.Open();
             var command = conn.CreateCommand();
 
-            command.CommandText = "SELECT name FROM platforms";
+            command.CommandText = "SELECT name FROM platforms ORDER by name ASC";
             SQLiteDataReader sdr = command.ExecuteReader();
 
             
