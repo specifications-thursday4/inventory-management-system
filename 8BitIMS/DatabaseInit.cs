@@ -29,23 +29,7 @@ namespace _8BitIMS
 
         public DatabaseInit()
         {
-            //SQLiteConnection conn = new SQLiteConnection("Data Source = inventory.db");
-            //conn.Open();
-
-
-            //var command = conn.CreateCommand();
-            //command.CommandText = "ALTER TABLE platforms " +
-            //    "ADD price int";
-            //command.ExecuteNonQuery();
-
-            //command.CommandText = "ALTER TABLE games " +
-            //    "ADD price int";
-            //command.ExecuteNonQuery();
-
-            //SetUpTables();
-            //gatherData();
-            //populateData();
-
+            SetUpTables();
 
         }
 
@@ -66,10 +50,10 @@ namespace _8BitIMS
             wc.Headers.Add("X-Mashape-Key", APIKEY);                // Adding the Headers to the WebClient - API token
             wc.Headers.Add("Accept", ACCEPT);                       // Telling the WebClient what to accept from the URL
 
-            
+
 
             const int MAX_PULL = 9900;
-            const int MAX_OFFSET = 50;                             
+            const int MAX_OFFSET = 50;
             int x = MAX_OFFSET;                                     // Offset value for pagination while getting data from IGDB
             //int y = 0;                                              // Value for terminating loops
 
@@ -78,7 +62,7 @@ namespace _8BitIMS
                 response = wc.DownloadString(URL_PLATS + x);
                 if (response.StartsWith("["))
                 {
-                   // y = 0;
+                    // y = 0;
                     //while (y < MAX_OFFSET)
                     for (int i = 0; i < MAX_OFFSET; i++)
                     {
@@ -107,14 +91,14 @@ namespace _8BitIMS
 
             //x = y = 0;
             //while (x <= MAX_PULL)
-            for(int i = 0; i <= MAX_PULL; i += MAX_OFFSET)
+            for (int i = 0; i <= MAX_PULL; i += MAX_OFFSET)
             {
                 response = wc.DownloadString(URL_GAMES + i);
                 if (response.StartsWith("["))
                 {
                     //y = 0;
                     //while (y < MAX_OFFSET)
-                    for(int j = 0; j < MAX_OFFSET; j++)
+                    for (int j = 0; j < MAX_OFFSET; j++)
                     {
                         Games game = new Games();
                         data = JsonConvert.DeserializeObject<List<JObject>>(response)[j];
@@ -126,38 +110,38 @@ namespace _8BitIMS
                         Console.WriteLine(data["name"]);
                     }
                     //x += MAX_OFFSET;
-                    
+
                 }
 
             }
-           /* foreach (Games game in gamesList)
-            {
-                command.CommandText = "INSERT INTO games(id, name, quantity) VALUES("
-                            + game.id + ",'" + game.name.Replace("'", "''") + "', 0);";
-                command.ExecuteNonQuery();
-            }
+            /* foreach (Games game in gamesList)
+             {
+                 command.CommandText = "INSERT INTO games(id, name, quantity) VALUES("
+                             + game.id + ",'" + game.name.Replace("'", "''") + "', 0);";
+                 command.ExecuteNonQuery();
+             }
 
-            foreach (Platforms plat in platsList)
-            {
+             foreach (Platforms plat in platsList)
+             {
 
-                command.CommandText = "INSERT INTO platforms(id, name, quantity) VALUES("
-                    + plat.id + ",'" + plat.name.Replace("'", "''") + "', 0);";
-                command.ExecuteNonQuery();
+                 command.CommandText = "INSERT INTO platforms(id, name, quantity) VALUES("
+                     + plat.id + ",'" + plat.name.Replace("'", "''") + "', 0);";
+                 command.ExecuteNonQuery();
 
-                foreach (int i in plat.games)
-                    foreach (Games title in gamesList)
-                    {
-                        if (title.id == i)
-                        {
-                            command.CommandText = "INSERT INTO multiplat_games(game_id, platform_id, quantity) VALUES("
-                                + title.id + "," + plat.id + ", 0);";
-                            command.ExecuteNonQuery();
-                        }
-                    }
-            }
+                 foreach (int i in plat.games)
+                     foreach (Games title in gamesList)
+                     {
+                         if (title.id == i)
+                         {
+                             command.CommandText = "INSERT INTO multiplat_games(game_id, platform_id, quantity) VALUES("
+                                 + title.id + "," + plat.id + ", 0);";
+                             command.ExecuteNonQuery();
+                         }
+                     }
+             }
 
-            conn.Close();*/
-            
+             conn.Close();*/
+
         }
 
         private void SetUpTables()
@@ -171,17 +155,17 @@ namespace _8BitIMS
             command.CommandText = "CREATE TABLE IF NOT EXISTS platforms("
                 + " id int PRIMARY KEY,"
                 + " name text NOT NULL,"
-                + " quantity int NOT NULL"
-                + " price int"
+                + " quantity int NOT NULL,"
+                    + " price int"
                 + ");";
             command.ExecuteNonQuery();
 
 
             command.CommandText = "CREATE TABLE IF NOT EXISTS games("
-               + " id int PRIMARY KEY," 
-               + " name text NOT NULL," 
-               + " quantity int NOT NULL"
-               + " price int"
+               + " id int PRIMARY KEY,"
+               + " name text NOT NULL,"
+               + " quantity int NOT NULL,"
+                   + " price int"
                + ");";
             command.ExecuteNonQuery();
 
@@ -196,7 +180,18 @@ namespace _8BitIMS
                 + ");";
             command.ExecuteNonQuery();
 
+            //Counts number of platforms in table. if less than 5 platforms then init database.
+            command.CommandText = "Select count(id) from platforms";
+            int result = int.Parse(command.ExecuteScalar().ToString());
+
+
             conn.Close();
+
+            if (result < 5)
+            {//since less than optimal amount of platforms, database initialzes.
+                gatherData();
+                populateData();
+            }
         }
 
         private void populateData()
@@ -235,6 +230,14 @@ namespace _8BitIMS
                     }
             }
 
+            command.CommandText = "ALTER TABLE platforms " +
+                "ADD price int";
+            command.ExecuteNonQuery();
+
+            command.CommandText = "ALTER TABLE games " +
+                "ADD price int";
+            command.ExecuteNonQuery();
+
             conn.Close();
 
         }
@@ -242,5 +245,5 @@ namespace _8BitIMS
 
 
 
-    
+
 }

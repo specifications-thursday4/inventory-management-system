@@ -116,6 +116,7 @@
       <DependentUpon>AddNewItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="DatabaseInit.cs" />
+    <Compile Include="DatabaseUpdate.cs" />
     <Compile Include="IMSMainPage.xaml.cs">
       <DependentUpon>IMSMainPage.xaml</DependentUpon>
     </Compile>
