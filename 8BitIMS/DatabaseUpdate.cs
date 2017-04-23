@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -120,43 +120,60 @@ namespace _8BitIMS
             SQLiteConnection conn = new SQLiteConnection(DATABASE); // Sets up a new database connection
             conn.Open();                                            // Opens the database for queries
             var command = conn.CreateCommand();                     // Creates a command variable for SQL commands
+            var gamesCommand = conn.CreateCommand();
+            var platCommand = conn.CreateCommand();
+            var multiPlatCommand = conn.CreateCommand();
 
             Console.WriteLine("Inserting games into database");
             foreach (Games game in gamesList)
-            {
-                Console.WriteLine("Inserting " + game.name + " into games table");
-                command.CommandText = "INSERT INTO games(id, name, quantity) VALUES("
+            {               
+                gamesCommand.CommandText = "SELECT * FROM games WHERE id = " + game.id + ";";
+                SQLiteDataReader sdr = gamesCommand.ExecuteReader();
+                if (!sdr.HasRows)
+                {
+                    Console.WriteLine("Inserting " + game.name + " into games table");
+                    command.CommandText = "INSERT INTO games(id, name, quantity) VALUES("
                             + game.id + ",'" + game.name.Replace("'", "''") + "', 0);";
-                command.ExecuteNonQuery();
+
+                    command.ExecuteNonQuery();
+                }
+                sdr.Close();
             }
 
             Console.WriteLine("Inserting platforms and games-by-platfrom into database");
             foreach (Platforms plat in platsList)
             {
-                Console.WriteLine("Inserting " + plat.name + " into platform table");
-                command.CommandText = "INSERT INTO platforms(id, name, quantity) VALUES("
-                    + plat.id + ",'" + plat.name.Replace("'", "''") + "', 0);";
-                command.ExecuteNonQuery();
+                platCommand.CommandText = "SELECT * FROM platforms WHERE id = " + plat.id + ";";
+                SQLiteDataReader sdr = platCommand.ExecuteReader();
+                if (!sdr.HasRows)
+                {
+                    Console.WriteLine("Inserting " + plat.name + " into platform table");
+                    command.CommandText = "INSERT INTO platforms(id, name, quantity) VALUES("
+                        + plat.id + ",'" + plat.name.Replace("'", "''") + "', 0);";
+                    command.ExecuteNonQuery();
+                }
+                sdr.Close();
+
 
                 foreach (int i in plat.games)
                     foreach (Games title in gamesList)
                     {
                         if (title.id == i)
                         {
-                            Console.WriteLine("Inserting " + title.name + " into multiplat_games table under " + plat.name);
-                            command.CommandText = "INSERT INTO multiplat_games(game_id, platform_id, quantity) VALUES("
-                                + title.id + "," + plat.id + ", 0);";
-                            command.ExecuteNonQuery();
+                            multiPlatCommand.CommandText = "SELECT * FROM multiplat_games WHERE game_id = " + title.id + " AND platform_id = " + plat.id + ";";
+                            sdr = multiPlatCommand.ExecuteReader();
+                            if (!sdr.HasRows)
+                            {
+                                Console.WriteLine("Inserting " + title.name + " into multiplat_games table under " + plat.name);
+                                command.CommandText = "INSERT INTO multiplat_games(game_id, platform_id, quantity) VALUES("
+                                    + title.id + "," + plat.id + ", 0);";
+                                command.ExecuteNonQuery();
+                            }
+                            sdr.Close();
                         }
                     }
             }
-
             conn.Close();
-
         }
     }
-
-
-
-
 }

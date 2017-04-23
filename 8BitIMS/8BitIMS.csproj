@@ -45,6 +45,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -129,6 +130,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Games.cs" />
+    <Compile Include="SummaryReports.xaml.cs">
+      <DependentUpon>SummaryReports.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Platforms.cs" />
     <Compile Include="POSMainPage.xaml.cs">
       <DependentUpon>POSMainPage.xaml</DependentUpon>
@@ -177,6 +181,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SummaryReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="POSMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
