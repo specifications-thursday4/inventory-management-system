@@ -43,37 +43,42 @@ namespace _8BitIMS
             Label gameColLabel = new Label();
             Label count = new Label();
             Label qty = new Label();
+            Label priceLabel = new Label();
 
             gameColLabel.Content = "Game Title";
             count.Content = "Count";
             qty.Content = "Qty.";
+            priceLabel.Content = "Price";
+
 
             gameColLabel.FontWeight = FontWeights.ExtraBold;
             count.FontWeight = FontWeights.ExtraBold;
             qty.FontWeight = FontWeights.ExtraBold;
+            priceLabel.FontWeight = FontWeights.ExtraBold;
 
             GameColumn.Children.Add(gameColLabel);
             Count.Children.Add(count);
             Qty.Children.Add(qty);
+            Price.Children.Add(priceLabel);
 
-            command.CommandText = "SELECT g.name, m.quantity FROM games g INNER JOIN ("
-               + " SELECT game_id, quantity FROM multiplat_games WHERE platform_id = ("
+            command.CommandText = "SELECT g.name, m.quantity, m.price FROM games g INNER JOIN ("
+               + " SELECT game_id, quantity, price FROM multiplat_games WHERE platform_id = ("
                + " SELECT id FROM platforms WHERE name = '" + tableName + "'"
                + "))m ON g.id = m.game_id ORDER BY g.name ASC;";
 
            
-
-
+            String tmpPrice = "0";
             SQLiteDataReader sdr = command.ExecuteReader();
             int fieldcount = 0;
             while (sdr.Read())
             {
                 Label gameLabel = new Label();
                 Label quantity = new Label();
-                gameLabel.Content = sdr.GetString(0);
-                
+                Label price = new Label();
+
+                gameLabel.Content = sdr.GetString(0);      
                 quantity.Content = sdr.GetInt32(1);
-                
+                Console.WriteLine(sdr.GetValue(2).ToString());
                 
                 
                 GameColumn.Children.Add(gameLabel);

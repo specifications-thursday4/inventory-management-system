@@ -39,11 +39,6 @@ namespace _8BitIMS
         /// </summary>
         private void gatherData()
         {
-            /*SQLiteConnection conn = new SQLiteConnection(DATABASE); // Sets up a new database connection
-            conn.Open();                                            // Opens the database for queries
-            var command = conn.CreateCommand();                     // Creates a command variable for SQL commands
-            */
-
             WebClient wc = new WebClient();                         // Webclient is used to scrape from a URL                
             JObject data = null;                                    // Retains the data from the URL in the form of JTokens
             string response;                                        // Response from the URL
@@ -55,15 +50,12 @@ namespace _8BitIMS
             const int MAX_PULL = 9900;
             const int MAX_OFFSET = 50;
             int x = MAX_OFFSET;                                     // Offset value for pagination while getting data from IGDB
-            //int y = 0;                                              // Value for terminating loops
 
             do
             {
                 response = wc.DownloadString(URL_PLATS + x);
                 if (response.StartsWith("["))
                 {
-                    // y = 0;
-                    //while (y < MAX_OFFSET)
                     for (int i = 0; i < MAX_OFFSET; i++)
                     {
                         try
@@ -75,7 +67,6 @@ namespace _8BitIMS
                             var tokenObj = data["games"];
                             platform.games = tokenObj.ToObject<List<int>>();
                             platsList.Add(platform);
-                            //y++;
 
 
                             Console.WriteLine(data["name"]);
@@ -89,15 +80,11 @@ namespace _8BitIMS
                 x += MAX_OFFSET;
             } while (!response.StartsWith("[]"));
 
-            //x = y = 0;
-            //while (x <= MAX_PULL)
             for (int i = 0; i <= MAX_PULL; i += MAX_OFFSET)
             {
                 response = wc.DownloadString(URL_GAMES + i);
                 if (response.StartsWith("["))
                 {
-                    //y = 0;
-                    //while (y < MAX_OFFSET)
                     for (int j = 0; j < MAX_OFFSET; j++)
                     {
                         Games game = new Games();
@@ -105,42 +92,12 @@ namespace _8BitIMS
                         game.id = (int)data["id"];
                         game.name = (string)data["name"];
                         gamesList.Add(game);
-                        //y++;
 
                         Console.WriteLine(data["name"]);
                     }
-                    //x += MAX_OFFSET;
-
                 }
-
             }
-            /* foreach (Games game in gamesList)
-             {
-                 command.CommandText = "INSERT INTO games(id, name, quantity) VALUES("
-                             + game.id + ",'" + game.name.Replace("'", "''") + "', 0);";
-                 command.ExecuteNonQuery();
-             }
-
-             foreach (Platforms plat in platsList)
-             {
-
-                 command.CommandText = "INSERT INTO platforms(id, name, quantity) VALUES("
-                     + plat.id + ",'" + plat.name.Replace("'", "''") + "', 0);";
-                 command.ExecuteNonQuery();
-
-                 foreach (int i in plat.games)
-                     foreach (Games title in gamesList)
-                     {
-                         if (title.id == i)
-                         {
-                             command.CommandText = "INSERT INTO multiplat_games(game_id, platform_id, quantity) VALUES("
-                                 + title.id + "," + plat.id + ", 0);";
-                             command.ExecuteNonQuery();
-                         }
-                     }
-             }
-
-             conn.Close();*/
+           
 
         }
 
@@ -156,7 +113,7 @@ namespace _8BitIMS
                 + " id int PRIMARY KEY,"
                 + " name text NOT NULL,"
                 + " quantity int NOT NULL,"
-                    + " price int"
+                + " price int"
                 + ");";
             command.ExecuteNonQuery();
 
@@ -164,8 +121,7 @@ namespace _8BitIMS
             command.CommandText = "CREATE TABLE IF NOT EXISTS games("
                + " id int PRIMARY KEY,"
                + " name text NOT NULL,"
-               + " quantity int NOT NULL,"
-                   + " price int"
+               + " quantity int NOT NULL"
                + ");";
             command.ExecuteNonQuery();
 
@@ -174,6 +130,7 @@ namespace _8BitIMS
                 + " game_id int NOT NULL,"
                 + " platform_id int NOT NULL,"
                 + " quantity int NOT NULL,"
+                + " price int,"
                 + " PRIMARY KEY(game_id, platform_id),"
                 + " CONSTRAINT fk_game_id FOREIGN KEY(game_id)REFERENCES games(id),"
                 + " CONSTRAINT fk_platform_id FOREIGN KEY(platform_id) REFERENCES platforms(id)"
