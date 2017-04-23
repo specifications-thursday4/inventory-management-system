@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -137,8 +137,8 @@ namespace _8BitIMS
                 Price.Content = "Price";
                 Price.Margin = new Thickness(245, 190, 350, 320);
 
-                console.Content = "Name of Console(s)";
-                console.Margin = new Thickness(170, 220, 350, 290);
+                console.Content = "Name of Console";
+                console.Margin = new Thickness(180, 220, 350, 290);
 
 
                 priceText.Height = 25;
@@ -177,7 +177,7 @@ namespace _8BitIMS
             {
                 screenState = 2;
 
-                TypeAdded.Content = "Enter Item Information";
+                TypeAdded.Content = "Enter Miscellaneous Item Information";
                 TypeAdded.FontSize = 25;
                 TypeAdded.Margin = new Thickness(185, 55, 120, 445);
 
@@ -189,9 +189,6 @@ namespace _8BitIMS
 
                 Price.Content = "Price";
                 Price.Margin = new Thickness(245, 190, 350, 320);
-
-                console.Content = "Name of Console(s)";
-                console.Margin = new Thickness(170, 220, 350, 290);
 
 
                 priceText.Height = 25;
@@ -206,10 +203,6 @@ namespace _8BitIMS
                 itemName.Width = 100;
                 itemName.Margin = new Thickness(325, 130, 180, 385);
 
-                consoleText.Height = 25;
-                consoleText.Width = 100;
-                consoleText.Margin = new Thickness(325, 220, 180, 295);
-
                 Confirm.Content = "Confirm";
                 Cancel.Content = "Cancel";
 
@@ -222,9 +215,9 @@ namespace _8BitIMS
                 Cancel.Margin = new Thickness(385, 280, 180, 235);
 
                 box.Content = "In Box";
-                box.Margin = new Thickness(240, 250, 350, 345);
+                box.Margin = new Thickness(239, 220, 350, 290);
 
-                inBox.Margin = new Thickness(325, 255, 350, 345);
+                inBox.Margin = new Thickness(325, 220, 180, 295);
             }
         }
 
@@ -238,17 +231,17 @@ namespace _8BitIMS
             // checks for values and prompts
             if (string.IsNullOrWhiteSpace(itemName.Text))
             {
-                MessageBox.Show("Enter an item name please");
+                MessageBox.Show("Enter an item name please.");
                 resultReturn = false;
             }
             else if (string.IsNullOrWhiteSpace(amount.Text))
             {
-                MessageBox.Show("Enter an amount please");
+                MessageBox.Show("Enter an amount please.");
                 resultReturn = false;
             }
             else if (string.IsNullOrWhiteSpace(priceText.Text))
             {
-                MessageBox.Show("Enter a price please");
+                MessageBox.Show("Enter a price please.");
                 resultReturn = false;
             }
             if (resultReturn == true)
@@ -256,16 +249,24 @@ namespace _8BitIMS
                 if (screenState == 0) // if adding a console
                 {
 
-
                     int id = randomID;
                     string name = itemName.Text;
                     string quantity = amount.Text;
                     string price = priceText.Text;
+                    
+                    command.CommandText = "Select name from platforms " +
+                                            "where UPPER(name) = '" + name.Trim().ToUpper() + "'";
+                    var platName = command.ExecuteReader();
+                    String pN = "";
+                    while (platName.Read())
+                    {
+                        pN = platName.GetString(0);
+                    }
 
+                    command.Dispose();
 
-                    // need in-box column
-                    command.CommandText = "INSERT into platforms (id, name, quantity, price)"
-                        + "VALUES(@id,@name,@quant, @price)";
+                    String pNUpper = pN.ToUpper();
+                    String name2 = name.ToUpper();
 
                     // if in box is checked
                     if (inBox.IsChecked==true)
@@ -445,6 +446,7 @@ namespace _8BitIMS
                     }
                     
                 }
+
                 this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
 
             }
