@@ -10,10 +10,10 @@
 
 
 
-    <Canvas Background="#003399" Width="640" Height="540">
+    <Canvas x:Name="BG"  Width="640" Height="540">
 
-        <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" Click="Back"/>
-        <Button Content ="Confirm" Name="Confirm" Width="100" Height="25" Click="Submit" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Canvas.Left="530" Canvas.Top="25"/>
+        <Button Style="{StaticResource Boom}" HorizontalAlignment="Left" Click="Back" Canvas.Left="14" Canvas.Top="5"/>
+        <Button Style="{StaticResource Check}"   Click="Submit" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Canvas.Left="540" Canvas.Top="5"/>
         <Label Name="consoleLabel"
             FontSize="20"
             FontWeight="Bold"
@@ -28,7 +28,7 @@
             Height="440"
             Canvas.Top="60">
 
-            <Grid Background="LightSkyBlue">
+            <Grid x:Name="BG2">
 
 
                 <Grid.ColumnDefinitions>

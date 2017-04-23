@@ -42,7 +42,7 @@ namespace _8BitIMS
             command.CommandText = "SELECT name FROM platforms ORDER by name ASC";
             SQLiteDataReader sdr = command.ExecuteReader();
 
-            
+
             while (sdr.Read())
             {
                 Button btn = new Button();
@@ -50,12 +50,12 @@ namespace _8BitIMS
                 btn.Height = 50;
                 btn.Background = Brushes.LightSkyBlue;
                 btn.Click += new RoutedEventHandler(Category_Click);
-                
+
                 btn.Content = sdr.GetString(0);
                 SystemsCategories.Children.Add(btn);
             }
 
-            
+
 
             conn.Close();
         }
@@ -72,5 +72,5 @@ namespace _8BitIMS
             this.NavigationService.Navigate(new Uri("IMSMainPage.xaml", UriKind.Relative));
         }
     }
-    
+
 }
