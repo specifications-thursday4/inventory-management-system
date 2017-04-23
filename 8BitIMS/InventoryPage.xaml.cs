@@ -59,8 +59,7 @@ namespace _8BitIMS
             command.CommandText = "SELECT g.name, m.quantity FROM games g INNER JOIN ("
                + " SELECT game_id, quantity FROM multiplat_games WHERE platform_id = ("
                + " SELECT id FROM platforms WHERE name = '" + tableName + "'"
-               + "))m O"
-               + "N g.id = m.game_id;";
+               + "))m ON g.id = m.game_id ORDER BY g.name ASC;";
 
            
 

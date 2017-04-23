@@ -9,7 +9,7 @@
       Title="MainPage">
 
     <Grid Background="LightSkyBlue">
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -38,8 +38,9 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-
-        
+        <Button Style="{StaticResource QuestionBlock}" Click="Report" Margin="268,-16,272,406" Grid.ColumnSpan="2"/>
+        <Label Content="Summary Reports" FontSize="36" Grid.ColumnSpan="2" Margin="173,139,147,-139"></Label>
+        <Button Content="Update Database" FontSize="16" Click="Update" Margin="246,441,247,49" Grid.ColumnSpan="2"></Button>
 
     </Grid>
 

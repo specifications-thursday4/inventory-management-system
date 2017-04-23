@@ -4,31 +4,88 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="540" d:DesignWidth="640"
 	Title="POSMainPage">
-    <Canvas Background="#003399" Width="640" Height="540">
+    <Page.Resources>
+        <Image x:Key="x" Source="/8BitIMS;component/img/xbox.png" Height="100" Width="100" />
+        <Image x:Key="xp" Source="/8BitIMS;component/img/xboxp.png" Height="100" Width="100"/>
+        <Image x:Key="w" Source="/8BitIMS;component/img/wii.png" Height="100" Width="100" />
+        <Image x:Key="wp" Source="/8BitIMS;component/img/wiip.png" Height="100" Width="100"/>
+        <Image x:Key="p" Source="/8BitIMS;component/img/ps.png" Height="100" Width="100" />
+        <Image x:Key="pp" Source="/8BitIMS;component/img/psp.png" Height="100" Width="100"/>
+        <Image x:Key="n" Source="/8BitIMS;component/img/nintendo.png" Height="100" Width="100"/>
+        <Image x:Key="np" Source="/8BitIMS;component/img/nintendop.png" Height="100" Width="100" />
+        <Image x:Key="logo1" Source="/8BitIMS;component/img/8bitlogo1.png" Height="100" Width="100" />
+        <Image x:Key="logo2" Source="/8BitIMS;component/img/8bitlogo2.png" Height="100" Width="100" />
+        <Image x:Key="logo3" Source="/8BitIMS;component/img/8bitlogo3.png" Height="100" Width="100" />
+        <Image x:Key="logo4" Source="/8BitIMS;component/img/8bitlogo4.png" Height="100" Width="100" />
+        <Image x:Key="logo5" Source="/8BitIMS;component/img/8bitlogo5.png" Height="100" Width="100" />
+        <Image x:Key="logo6" Source="/8BitIMS;component/img/8bitlogo6.png" Height="100" Width="100" />
+        <Image x:Key="logo7" Source="/8BitIMS;component/img/8bitlogo7.png" Height="100" Width="100" />
+        <Image x:Key="logo8" Source="/8BitIMS;component/img/8bitlogo8.png" Height="100" Width="100" />
+        <Image x:Key="logo9" Source="/8BitIMS;component/img/8bitlogo9.png" Height="100" Width="100" />
+        <Image x:Key="logo10" Source="/8BitIMS;component/img/8bitlogo10.png" Height="100" Width="100" />
+        <Image x:Key="logo11" Source="/8BitIMS;component/img/8bitlogo11.png" Height="100" Width="100" />
+        <Image x:Key="logo12" Source="/8BitIMS;component/img/8bitlogo12.png" Height="100" Width="100" />
 
-        <Button Style="{StaticResource BackArrow}" HorizontalAlignment="Left" Click="Back"/>
-        <Button Content="View Cart"  Click="ClickViewCart" Canvas.Right="16"/>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <ScrollViewer    
-            Name="Scroller"  
-            Width="640"   
-            Height="440"
-            Canvas.Top="60">
 
-            <Grid Background="LightSkyBlue">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <!--Temporary button to get to next screen-->
-                    <Canvas Grid.Row="1">
-                        <Button Content="Neo Geo MVS" Click="ClickCategory" Canvas.Right="50" Canvas.Top="150"/>
-                    </Canvas>
-                </Grid>
+    </Page.Resources>
+    <Canvas Background="LightSkyBlue">
 
-        </ScrollViewer>
+
+        <Grid Opacity="2" >
+            <Grid.Background>
+                <ImageBrush ImageSource="res/bg.png" Stretch="UniformToFill" Opacity="0.65"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Canvas Grid.Row="0">
+                <Button Content="ViewCart" Click= "ClickViewCart" Canvas.Right="0" Canvas.Left="23" Canvas.Top="30" RenderTransformOrigin="-0.448,0.585"/>
+            </Canvas>
+
+            <!--Spinner Code-->
+            <Canvas Grid.Row="1" MouseWheel="Canvas_MouseWheel_1"  HorizontalAlignment="Left" Height="509" Margin="10,0,0,0" VerticalAlignment="Top" Width="622">
+
+
+
+                <Image Height="100" Canvas.Left="188" Canvas.Top="101" Width="100"/>
+                <Image HorizontalAlignment="Left" Height="538" VerticalAlignment="Top" Width="323" Source="img/spin.png" Canvas.Left="335" Opacity="0.95"/>
+                <Button Cursor="Hand" BorderThickness="0"  
+    Style="{StaticResource TransparentStyle }" Click="button1_Click" Padding="0"   MouseEnter="button1_MouseEnter" MouseLeave="button1_MouseLeave"  Name="button1" Canvas.Left="383" Canvas.Top="63" Height="62" Width="132" RenderTransformOrigin="0.336,0.449">
+
+                    <DynamicResource ResourceKey="x"/>
+                </Button>
+                <Button Cursor="Hand" BorderThickness="0"  
+    Style="{StaticResource TransparentStyle }" Click="button2_Click" Padding="0"   MouseEnter="button2_MouseEnter" MouseLeave="button2_MouseLeave"  Name="button2" Canvas.Left="353" Canvas.Top="208" Height="63" Width="105" RenderTransformOrigin="0.336,0.449">
+
+                    <DynamicResource ResourceKey="n"/>
+                </Button>
+
+                <Button Cursor="Hand" BorderThickness="0"  
+    Style="{StaticResource TransparentStyle }" Click="button3_Click" Padding="0"  MouseEnter="button3_MouseEnter" MouseLeave="button3_MouseLeave"  Name="button3" Canvas.Left="383" Canvas.Top="341" Height="76" Width="107" RenderTransformOrigin="0.336,0.449">
+
+                    <DynamicResource ResourceKey="p"/>
+                </Button>
+                <Button Cursor="Hand" BorderThickness="0"  
+    Style="{StaticResource TransparentStyle }" Click="logo_Click" Padding="0"     Name="logo" Canvas.Left="496" Canvas.Top="208" Height="100" Width="104" RenderTransformOrigin="0.336,0.449">
+                    <DynamicResource ResourceKey="logo1"/>
+                </Button>
+
+            </Canvas>
+        </Grid>
     </Canvas>
-
 </Page>
