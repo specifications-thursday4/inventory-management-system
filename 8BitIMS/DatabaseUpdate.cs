@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -126,8 +126,7 @@ namespace _8BitIMS
 
             Console.WriteLine("Inserting games into database");
             foreach (Games game in gamesList)
-            {
-               
+            {               
                 gamesCommand.CommandText = "SELECT * FROM games WHERE id = " + game.id + ";";
                 SQLiteDataReader sdr = gamesCommand.ExecuteReader();
                 if (!sdr.HasRows)

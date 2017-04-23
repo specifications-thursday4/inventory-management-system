@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,6 +39,7 @@ namespace _8BitIMS
         /// </summary>
         private void gatherData()
         {
+
             WebClient wc = new WebClient();                         // Webclient is used to scrape from a URL                
             JObject data = null;                                    // Retains the data from the URL in the form of JTokens
             string response;                                        // Response from the URL
@@ -51,11 +52,13 @@ namespace _8BitIMS
             const int MAX_OFFSET = 50;
             int x = MAX_OFFSET;                                     // Offset value for pagination while getting data from IGDB
 
+
             do
             {
                 response = wc.DownloadString(URL_PLATS + x);
                 if (response.StartsWith("["))
                 {
+
                     for (int i = 0; i < MAX_OFFSET; i++)
                     {
                         try
@@ -80,11 +83,13 @@ namespace _8BitIMS
                 x += MAX_OFFSET;
             } while (!response.StartsWith("[]"));
 
+
             for (int i = 0; i <= MAX_PULL; i += MAX_OFFSET)
             {
                 response = wc.DownloadString(URL_GAMES + i);
                 if (response.StartsWith("["))
                 {
+
                     for (int j = 0; j < MAX_OFFSET; j++)
                     {
                         Games game = new Games();
@@ -93,11 +98,12 @@ namespace _8BitIMS
                         game.name = (string)data["name"];
                         gamesList.Add(game);
 
+
                         Console.WriteLine(data["name"]);
                     }
                 }
             }
-           
+
 
         }
 
@@ -186,15 +192,6 @@ namespace _8BitIMS
                         }
                     }
             }
-
-            command.CommandText = "ALTER TABLE platforms " +
-                "ADD price int";
-            command.ExecuteNonQuery();
-
-            command.CommandText = "ALTER TABLE games " +
-                "ADD price int";
-            command.ExecuteNonQuery();
-
             conn.Close();
 
         }
