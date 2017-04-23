@@ -78,7 +78,7 @@ namespace _8BitIMS
 
                 gameLabel.Content = sdr.GetString(0);      
                 quantity.Content = sdr.GetInt32(1);
-                Console.WriteLine(sdr.GetValue(2).ToString());
+                
                 
                 
                 GameColumn.Children.Add(gameLabel);
