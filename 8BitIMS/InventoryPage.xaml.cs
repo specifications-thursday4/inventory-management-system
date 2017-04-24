@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,11 +39,15 @@ namespace _8BitIMS
             consoleLabel.Content = tableName;
             command.CommandText = "SELECT id FROM platforms WHERE name = '" + tableName + "'";
             platID = (int)command.ExecuteScalar();
+            Random rand = new Random();
 
             Label gameColLabel = new Label();
             Label count = new Label();
             Label qty = new Label();
             Label priceLabel = new Label();
+
+            BG.Background = Brushes.CornflowerBlue;
+            BG2.Background = MainWindow.colourArr[rand.Next() % MainWindow.colourArr.Length];
 
             gameColLabel.Content = "Game Title";
             count.Content = "Count";
@@ -78,7 +82,7 @@ namespace _8BitIMS
 
                 gameLabel.Content = sdr.GetString(0);      
                 quantity.Content = sdr.GetInt32(1);
-                Console.WriteLine(sdr.GetValue(2).ToString());
+                
                 
                 
                 GameColumn.Children.Add(gameLabel);

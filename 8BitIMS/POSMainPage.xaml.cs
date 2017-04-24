@@ -44,16 +44,13 @@ namespace _8BitIMS
             imageKeyList.Add("ps2");
             imageKeyList.Add("ps3");
             imageKeyList.Add("ps4");
-            Console.Write(imageKeyList.Count());
-            
-
 
             button1.Content = FindResource(imageKeyList[b1]);
             button2.Content = FindResource(imageKeyList[b2]);
-            button3.Content = FindResource(imageKeyList[b3]); 
+            button3.Content = FindResource(imageKeyList[b3]);
 
 
-            for (int i=1; i <= 12; i++) {
+            for(int i=1; i <= 12; i++) {
                 logoKeyList.Add("logo" + i.ToString());
             }
 
@@ -120,7 +117,7 @@ namespace _8BitIMS
         }
 
         private void Canvas_MouseWheel_1(object sender, MouseWheelEventArgs e)
-        {    
+        {
             if (e.Delta < 0)      // scroll toward user
             {
                 logorotateCC();
@@ -135,7 +132,7 @@ namespace _8BitIMS
             else       // scroll away user
             {
                 logorotateC();
-                b1 = (imageKeyList.Count + (b1 +1)) % imageKeyList.Count;
+                b1 = (imageKeyList.Count + (b1 + 1)) % imageKeyList.Count;
                 b2 = (imageKeyList.Count + (b2 + 1)) % imageKeyList.Count;
                 b3 = (imageKeyList.Count + (b3 + 1)) % imageKeyList.Count;
                 button1.Content = FindResource(imageKeyList[b1]);
@@ -155,22 +152,22 @@ namespace _8BitIMS
         private void logorotateC()                          //clockwise
         {
             int index = 0;
-            foreach(string str in logoKeyList)
+            foreach (string str in logoKeyList)
             {
-                if(logo.Content.GetHashCode() == FindResource(str).GetHashCode())
+                if (logo.Content.GetHashCode() == FindResource(str).GetHashCode())
                 {
                     index = logoKeyList.IndexOf(str);
                 }
-                
+
             }
             if (index == 11)
             {
                 index = 0;
-                logo.Content = FindResource(logoKeyList[index ]);
+                logo.Content = FindResource(logoKeyList[index]);
             }
             else
             {
-                logo.Content = FindResource(logoKeyList[index +1]);
+                logo.Content = FindResource(logoKeyList[index + 1]);
             }
 
 
@@ -182,12 +179,12 @@ namespace _8BitIMS
             foreach (string str in logoKeyList)
             {
                 if (logo.Content.GetHashCode() == FindResource(str).GetHashCode())
-                {   
+                {
                     index = logoKeyList.IndexOf(str);
-                    
+
                 }
-                
-                
+
+
             }
             if (index == 0)
             {

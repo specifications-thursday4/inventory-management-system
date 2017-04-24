@@ -12,7 +12,7 @@
         <Image x:Key="p" Source="/8BitIMS;component/img/ps.png" Height="100" Width="100" />
         <Image x:Key="n" Source="/8BitIMS;component/img/nintendo.png" Height="100" Width="100"/>
         <Image x:Key="nfcds" Source="/8BitIMS;component/img/nintendofcds.png" Height="100" Width="100"/>
-        
+
         <Image x:Key="ngc" Source="/8BitIMS;component/img/nintendogc.png" Height="100" Width="100"/>
         <Image x:Key="nes" Source="/8BitIMS;component/img/nintendones.png" Height="100" Width="100"/>
         <Image x:Key="ns" Source="/8BitIMS;component/img/nintendoswitch.png" Height="100" Width="100"/>
@@ -22,7 +22,7 @@
         <Image x:Key="ps2" Source="/8BitIMS;component/img/ps2.png" Height="100" Width="100"/>
         <Image x:Key="ps3" Source="/8BitIMS;component/img/ps3.png" Height="100" Width="100"/>
         <Image x:Key="ps4" Source="/8BitIMS;component/img/ps4.png" Height="100" Width="100"/>
-        
+
         <Image x:Key="logo1" Source="/8BitIMS;component/img/8bitlogo1.png" Height="100" Width="100" />
         <Image x:Key="logo2" Source="/8BitIMS;component/img/8bitlogo2.png" Height="100" Width="100" />
         <Image x:Key="logo3" Source="/8BitIMS;component/img/8bitlogo3.png" Height="100" Width="100" />
@@ -62,7 +62,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Canvas Grid.Row="0">
-                <Button Content="ViewCart" Click= "ClickViewCart" Canvas.Right="0" Canvas.Left="23" Canvas.Top="30" RenderTransformOrigin="-0.448,0.585"/>
+                <Button Style="{StaticResource Cart}" Click= "ClickViewCart" Canvas.Right="0" Canvas.Left="-14" Canvas.Top="-2"/>
             </Canvas>
 
             <!--Spinner Code-->
@@ -75,16 +75,18 @@
                 <Button Cursor="Hand" BorderThickness="0"  
     Style="{StaticResource TransparentStyle }" Click="button1_Click" Padding="0"   MouseEnter="button1_MouseEnter" MouseLeave="button1_MouseLeave"  Name="button1" Canvas.Left="383" Canvas.Top="63" Height="62" Width="132" RenderTransformOrigin="0.336,0.449">
 
-                   
+                    <DynamicResource ResourceKey="x"/>
                 </Button>
                 <Button Cursor="Hand" BorderThickness="0"  
     Style="{StaticResource TransparentStyle }" Click="button2_Click" Padding="0"   MouseEnter="button2_MouseEnter" MouseLeave="button2_MouseLeave"  Name="button2" Canvas.Left="353" Canvas.Top="208" Height="63" Width="105" RenderTransformOrigin="0.336,0.449">
 
+                    <DynamicResource ResourceKey="n"/>
                 </Button>
 
                 <Button Cursor="Hand" BorderThickness="0"  
     Style="{StaticResource TransparentStyle }" Click="button3_Click" Padding="0"  MouseEnter="button3_MouseEnter" MouseLeave="button3_MouseLeave"  Name="button3" Canvas.Left="383" Canvas.Top="341" Height="76" Width="107" RenderTransformOrigin="0.336,0.449">
 
+                    <DynamicResource ResourceKey="p"/>
                 </Button>
                 <Button Cursor="Hand" BorderThickness="0"  
     Style="{StaticResource TransparentStyle }" Click="logo_Click" Padding="0"     Name="logo" Canvas.Left="496" Canvas.Top="208" Height="100" Width="104" RenderTransformOrigin="0.336,0.449">

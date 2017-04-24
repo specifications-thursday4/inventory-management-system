@@ -268,40 +268,65 @@ namespace _8BitIMS
                     String pNUpper = pN.ToUpper();
                     String name2 = name.ToUpper();
 
-                    //if (inBox.Checked)
-                    //{
-
-                    //}
-
-                    // if console is already in the database
-                    // NEED IN BOX TO UPDATE, IF ITEM IS IN BOX THEN UPDATE INBOX QUANTITY and PRICE
-                    if (pNUpper.Equals(name2)){
-
-                        command.CommandText = "Select id from platforms " +
-                                                "where Upper(name) = '" + name.Trim().ToUpper() + "'";
-                        var plats = command.ExecuteScalar();
-
-                        command.CommandText = "Update platforms SET (quantity, price)"
-                             + "= (@quant, @price) Where id = " + plats;
-
-                 
-                        command.Parameters.AddWithValue("@quant", quantity);
-                        command.Parameters.AddWithValue("@price", price);
-                        command.ExecuteReader();
-                    }
-                    else
+                    // if in box is checked
+                    if (inBox.IsChecked==true)
                     {
-                        // need in-box column
-                        command.CommandText = "INSERT into platforms (id, name, quantity, price)"
-                            + "VALUES(@id,@name,@quant, @price)";
+                        // if console in database
+                        if (pNUpper.Equals(name2))
+                        {
 
-                        command.Parameters.AddWithValue("@id", id);
-                        command.Parameters.AddWithValue("@name", name);
-                        command.Parameters.AddWithValue("@quant", quantity);
-                        command.Parameters.AddWithValue("@price", price);
-                        command.ExecuteReader();
+                            command.CommandText = "Select id from platforms " +
+                                                    "where Upper(name) = '" + name.Trim().ToUpper() + "'";
+                            var plats = command.ExecuteScalar();
+
+                            command.CommandText = "Update platforms SET (inBoxQuant, inBoxPrice)"
+                                 + "= (@quant, @price) Where id = " + plats;
+
+                            command.Parameters.AddWithValue("@quant", quantity);
+                            command.Parameters.AddWithValue("@price", price);
+                            command.ExecuteReader();
+                        }
+                        else
+                        {
+                            command.CommandText = "INSERT into platforms (id, name, inBoxQuant, inBoxPrice)"
+                                + "VALUES(@id,@name,@quant, @price)";
+
+                            command.Parameters.AddWithValue("@id", id);
+                            command.Parameters.AddWithValue("@name", name);
+                            command.Parameters.AddWithValue("@quant", quantity);
+                            command.Parameters.AddWithValue("@price", price);
+                            command.ExecuteReader();
+                        }
                     }
-       
+
+                    // if not in box
+                    else{
+                        // if console in database
+                        if (pNUpper.Equals(name2))
+                        {
+                            command.CommandText = "Select id from platforms " +
+                                                    "where Upper(name) = '" + name.Trim().ToUpper() + "'";
+                            var plats = command.ExecuteScalar();
+
+                            command.CommandText = "Update platforms SET (quantity, price)"
+                                 + "= (@quant, @price) Where id = " + plats;
+
+                            command.Parameters.AddWithValue("@quant", quantity);
+                            command.Parameters.AddWithValue("@price", price);
+                            command.ExecuteReader();
+                        }
+                        else
+                        {
+                            command.CommandText = "INSERT into platforms (id, name, quantity, price)"
+                                + "VALUES(@id,@name,@quant, @price)";
+
+                            command.Parameters.AddWithValue("@id", id);
+                            command.Parameters.AddWithValue("@name", name);
+                            command.Parameters.AddWithValue("@quant", quantity);
+                            command.Parameters.AddWithValue("@price", price);
+                            command.ExecuteReader();
+                        }
+                    }
                 }
                 else if (screenState == 1) // if adding a game
                 {
@@ -310,33 +335,122 @@ namespace _8BitIMS
                     string quantity = amount.Text;
                     string price = priceText.Text;
 
-                    command.CommandText = "INSERT into games " +
-                        "(id, name)" +
-                        "VALUES(@id,@name)";
 
-                    command.Parameters.AddWithValue("@id", id);
-                    command.Parameters.AddWithValue("@name", name);
-                    command.ExecuteReader();
+                    command.CommandText = "Select name from platforms " +
+                                            "where UPPER(name) = '" + name.Trim().ToUpper() + "'";
+
+                    var gameName = command.ExecuteReader();
+                    String gN = "";
+                    while (gameName.Read())
+                    {
+                        gN = gameName.GetString(0);
+                    }
 
                     command.Dispose();
+                    // if in box
+                    if (inBox.IsChecked == true)
+                    {
+                        // if game is in the database
+                        if (gN.ToUpper().Equals(name.ToUpper()))
+                        {
+                            command.CommandText = "Select id from games " +
+                                                    "where Upper(name) = '" + name.Trim().ToUpper() + "'";
+                            var gameID = command.ExecuteScalar();
 
-                    command.CommandText = "Select id from platforms " +
-                        "where UPPER(name) = '" + consoleText.Text.Trim().ToUpper() + "'";
+                            command.CommandText = "UPDATE multiplat_games" +
+                                 "set (inBoxQuant, inBoxPrice)" +
+                                 " = (@quant, @price)" +
+                                 " WHERE game_id = "+ gameID;
 
-                    var platID = command.ExecuteScalar();
+                            command.Parameters.AddWithValue("@quant", quantity);
+                            command.Parameters.AddWithValue("@price", price);
 
-                    command.CommandText = "INSERT into multiplat_games" +
-                         "(game_id, platform_id, quantity, price)" +
-                         "VALUES(@id,@plaftorm, @quant, @price)";
+                            command.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            command.CommandText = "INSERT into games " +
+                                "(id, name)" +
+                                "VALUES(@id,@name)";
 
-                    command.Parameters.AddWithValue("@id", id);
-                    command.Parameters.AddWithValue("@plaftorm", platID);
-                    command.Parameters.AddWithValue("@quant", quantity);
-                    command.Parameters.AddWithValue("@price", price);
+                            command.Parameters.AddWithValue("@id", id);
+                            command.Parameters.AddWithValue("@name", name);
+                            command.ExecuteReader();
 
-                    command.ExecuteNonQuery();
+                            command.Dispose();
+
+                            command.CommandText = "Select id from platforms " +
+                                "where UPPER(name) = '" + consoleText.Text.Trim().ToUpper() + "'";
+
+                            var platID = command.ExecuteScalar();
+
+                            command.CommandText = "INSERT into multiplat_games" +
+                                 "(game_id, platform_id, inBoxQuant, inBoxPrice)" +
+                                 "VALUES(@id,@plaftorm, @quant, @price)";
+
+                            command.Parameters.AddWithValue("@id", id);
+                            command.Parameters.AddWithValue("@plaftorm", platID);
+                            command.Parameters.AddWithValue("@quant", quantity);
+                            command.Parameters.AddWithValue("@price", price);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    // if not in box 
+                    else
+                    {
+                        if (gN.ToUpper().Equals(name.ToUpper()))
+                        {
+                            command.CommandText = "Select id from games " +
+                                       "where Upper(name) = '" + name.Trim().ToUpper() + "'";
+                            var gameID = command.ExecuteScalar();
+
+                            command.CommandText = "UPDATE multiplat_games" +
+                                 "set (quantity, price)" +
+                                 " = (@quant, @price)" +
+                                 " WHERE game_id = " + gameID;
+
+                            command.Parameters.AddWithValue("@quant", quantity);
+                            command.Parameters.AddWithValue("@price", price);
+
+                            command.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            command.CommandText = "INSERT into games " +
+                                "(id, name)" +
+                                "VALUES(@id,@name)";
+
+                            command.Parameters.AddWithValue("@id", id);
+                            command.Parameters.AddWithValue("@name", name);
+                            command.ExecuteReader();
+
+                            command.Dispose();
+
+                            command.CommandText = "Select id from platforms " +
+                                "where UPPER(name) = '" + consoleText.Text.Trim().ToUpper() + "'";
+
+                            var platID = command.ExecuteScalar();
+
+                            command.CommandText = "INSERT into multiplat_games" +
+                                 "(game_id, platform_id, quantity, price)" +
+                                 "VALUES(@id,@plaftorm, @quant, @price)";
+
+                            command.Parameters.AddWithValue("@id", id);
+                            command.Parameters.AddWithValue("@plaftorm", platID);
+                            command.Parameters.AddWithValue("@quant", quantity);
+                            command.Parameters.AddWithValue("@price", price);
+
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    
                 }
 
+                else if (screenState == 2) //adding misc items
+                {
+
+                }
                 this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
 
             }
