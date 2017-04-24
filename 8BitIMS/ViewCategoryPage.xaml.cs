@@ -36,70 +36,62 @@ namespace _8BitIMS
             conn.Open();
             var command = conn.CreateCommand();
             consoleLabel.Content = tableName;
-
             command.CommandText = "SELECT id FROM platforms WHERE name = '" + tableName + "'";
             platID = (int)command.ExecuteScalar();
+            Random rand = new Random();
 
             Label gameColLabel = new Label();
+            Label count = new Label();
             Label qty = new Label();
-            Label price = new Label();
+            Label priceLabel = new Label();
+
+            BG.Background = Brushes.CornflowerBlue;
+            BG2.Background = MainWindow.colourArr[rand.Next() % MainWindow.colourArr.Length];
 
             gameColLabel.Content = "Game Title";
+            count.Content = "Count";
             qty.Content = "Qty.";
-            price.Content = "Price";
+            priceLabel.Content = "Price";
+
 
             gameColLabel.FontWeight = FontWeights.ExtraBold;
+            count.FontWeight = FontWeights.ExtraBold;
             qty.FontWeight = FontWeights.ExtraBold;
-            price.FontWeight = FontWeights.ExtraBold;
+            priceLabel.FontWeight = FontWeights.ExtraBold;
 
             GameColumn.Children.Add(gameColLabel);
             Qty.Children.Add(qty);
-            Price.Children.Add(price);
+            Price.Children.Add(priceLabel);
+            //AddToCart.Children.Add(addCartButton);
 
-            command.CommandText = "SELECT g.name, m.quantity, g.price FROM games g INNER JOIN ("
-               + " SELECT game_id, quantity FROM multiplat_games WHERE platform_id = ("
+            command.CommandText = "SELECT g.name, m.quantity, m.price FROM games g INNER JOIN ("
+               + " SELECT game_id, quantity, price FROM multiplat_games WHERE platform_id = ("
                + " SELECT id FROM platforms WHERE name = '" + tableName + "'"
-               + "))m O"
-               + "N g.id = m.game_id;";
+               + "))m ON g.id = m.game_id ORDER BY g.name ASC;";
 
-
-
-
+           
+            String tmpPrice = "0";
             SQLiteDataReader sdr = command.ExecuteReader();
             int fieldcount = 0;
             while (sdr.Read())
             {
                 Label gameLabel = new Label();
                 Label quantity = new Label();
-                //Label priceLabel = new Label();
+                Label price = new Label();
 
-                gameLabel.Content = sdr.GetString(0);
-
+                gameLabel.Content = sdr.GetString(0);      
                 quantity.Content = sdr.GetInt32(1);
-
-                //priceLabel.Content = sdr.GetInt32(2);
-
+                
+                
+                
                 GameColumn.Children.Add(gameLabel);
                 Qty.Children.Add(quantity);
-
+                
                 fieldcount++;
             }
 
-            addCartButton = new Button[fieldcount];
-            Button emptyButton = new Button();
-            emptyButton.Visibility = Visibility.Hidden;
-            AddToCart.Children.Add(emptyButton);
 
-            for (int i = 0; i < addCartButton.Length; i++)
-            {
-                addCartButton[i] = new Button();
-                addCartButton[i].Content = "Add To Cart";
-                addCartButton[i].Margin = new Thickness(0, 7, 0, 3);
-                addCartButton[i].Click += confirmEvent;
-                AddToCart.Children.Add(addCartButton[i]);
-            }
-
-
+            
             conn.Close();
         }
 
@@ -114,10 +106,11 @@ namespace _8BitIMS
             this.NavigationService.Navigate(new Uri("POSMainPage.xaml", UriKind.Relative));
         }
 
-        private void ClickViewCart(object sender, RoutedEventArgs e)
+        private void ViewCartClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Uri("ViewCartPage.xaml", UriKind.Relative));
         }
+
     }
 
 }

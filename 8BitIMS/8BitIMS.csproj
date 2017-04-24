@@ -16,6 +16,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>6cd157c9</NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>\\Mac\Home\Desktop\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
@@ -33,7 +34,6 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -125,6 +125,7 @@
     <Compile Include="InventoryPage.xaml.cs">
       <DependentUpon>InventoryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Item.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -375,6 +376,76 @@
     <Resource Include="res\receipt.png" />
     <Resource Include="res\receipt2.png" />
     <Resource Include="res\shopping-cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fireball.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="img\zodiac.jpg" />
+    <Resource Include="img\zx_spectrum.png" />
+    <Resource Include="img\xbox360.png" />
+    <Resource Include="img\xboxarcade.png" />
+    <Resource Include="img\xboxone.png" />
+    <Resource Include="img\wiiu.png" />
+    <Resource Include="img\wiiware.png" />
+    <Resource Include="img\wonderswan.png" />
+    <Resource Include="img\wp.png" />
+    <Resource Include="img\superfam.png" />
+    <Resource Include="img\turbografx-.png" />
+    <Resource Include="img\vectrx.png" />
+    <Resource Include="img\vic_20.jpg" />
+    <Resource Include="img\virtualc.png" />
+    <Resource Include="img\web.png" />
+    <Resource Include="img\retron5.jpg" />
+    <Resource Include="img\segacd.png" />
+    <Resource Include="img\segadrive.png" />
+    <Resource Include="img\segagamegear.png" />
+    <Resource Include="img\segagenesis.png" />
+    <Resource Include="img\segams.png" />
+    <Resource Include="img\sega_saturn.png" />
+    <Resource Include="img\sg_1000.png" />
+    <Resource Include="img\sharpx1.png" />
+    <Resource Include="img\snes.png" />
+    <Resource Include="img\nintendo3ds.png" />
+    <Resource Include="img\nintendo64.png" />
+    <Resource Include="img\nintendods.png" />
+    <Resource Include="img\blackbarry.png" />
+    <Resource Include="img\colecovision.png" />
+    <Resource Include="img\commodore_64_logo.png" />
+    <Resource Include="img\donner.jpg" />
+    <Resource Include="img\dreamcast.png" />
+    <Resource Include="img\gameboy.png" />
+    <Resource Include="img\gameboya.png" />
+    <Resource Include="img\gameboyc.png" />
+    <Resource Include="img\intellivison.png" />
+    <Resource Include="img\ios.png" />
+    <Resource Include="img\linux.png" />
+    <Resource Include="img\lynx.png" />
+    <Resource Include="img\mac.png" />
+    <Resource Include="img\mobile.png" />
+    <Resource Include="img\msx.png" />
+    <Resource Include="img\msx2.png" />
+    <Resource Include="img\MVS.png" />
+    <Resource Include="img\neogeo.png" />
+    <Resource Include="img\ngage.png" />
+    <Resource Include="img\aari_5200.png" />
+    <Resource Include="img\amiga.png" />
+    <Resource Include="img\amstrad.jpg" />
+    <Resource Include="img\android.png" />
+    <Resource Include="img\apple_ii.png" />
+    <Resource Include="img\arcade.png" />
+    <Resource Include="img\atari-7800.png" />
+    <Resource Include="img\atari2600.png" />
+    <Resource Include="img\atari8bit.png" />
+    <Resource Include="img\atariJaguar.png" />
+    <Resource Include="img\atari_st.png" />
+    <Resource Include="img\bbc.png" />
+    <Resource Include="img\3DO.png" />
+    <Resource Include="img\32x.png" />
+    <Resource Include="img\psv.png" />
+    <Content Include="kick.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.105.0\build\net45\System.Data.SQLite.Core.targets')" />
