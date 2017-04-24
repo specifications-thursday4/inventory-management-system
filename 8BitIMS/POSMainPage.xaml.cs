@@ -21,33 +21,41 @@ namespace _8BitIMS
     /// </summary>
     public partial class POSMainPage : Page
     {
-        List<string> imageKeyList = new List<string>();
+        List<ImageKey> imageKeyList = new List<ImageKey>();
         List<string> logoKeyList = new List<string>();
-        int b1 = 0;
-        int b2 = 1;
-        int b3 = 2;
+       static int b1 = 0;
+       static int b2 = 1;
+       static int b3 = 2;
+        SoundPlayer player = new SoundPlayer("fireball.wav"); // fireball haha
+        SoundPlayer player2 = new SoundPlayer("kick.wav"); // fireball haha
 
         public POSMainPage()
         {
             InitializeComponent();
-            imageKeyList.Add("x");    // resourcekey for the image , which are in the xaml file under windows.resource
-            imageKeyList.Add("n");
-            imageKeyList.Add("p");
-            imageKeyList.Add("w");
-            imageKeyList.Add("nfcds");// nintendo family disk system
-            imageKeyList.Add("ngc");//gamecube
-            imageKeyList.Add("nes");//nintendo entertainment system
-            imageKeyList.Add("ns");//switch
-            imageKeyList.Add("ouya");// lenovo fun
-            imageKeyList.Add("pc");// duh
-            imageKeyList.Add("pcd");//pcdos
-            imageKeyList.Add("ps2");
-            imageKeyList.Add("ps3");
-            imageKeyList.Add("ps4");
-
-            button1.Content = FindResource(imageKeyList[b1]);
-            button2.Content = FindResource(imageKeyList[b2]);
-            button3.Content = FindResource(imageKeyList[b3]);
+            
+          
+            // resourcekey for the image , which are in the xaml file under windows.resource
+            imageKeyList.Add(new ImageKey("pc", "PC (Microsoft Windows)"));
+            imageKeyList.Add(new ImageKey("wii", "Wii"));
+            imageKeyList.Add(new ImageKey("wiiu", "Wii U"));
+            imageKeyList.Add(new ImageKey("xbox360", "Xbox 360"));
+            imageKeyList.Add(new ImageKey("xboxone", "Xbox One"));
+            imageKeyList.Add(new ImageKey("ps", "PlayStation"));
+            imageKeyList.Add(new ImageKey("ps2", "PlayStation 2"));
+            imageKeyList.Add(new ImageKey("ps3", "PlayStation 3"));
+            imageKeyList.Add(new ImageKey("ps4", "PlayStation 4"));
+            imageKeyList.Add(new ImageKey("psv", "PlayStation Vita"));
+            imageKeyList.Add(new ImageKey("psp", "PlayStation Portable"));
+            imageKeyList.Add(new ImageKey("ngc", "Nintendo GameCube"));
+            imageKeyList.Add(new ImageKey("n3ds", "Nintendo 3DS"));
+            imageKeyList.Add(new ImageKey("n64", "Nintendo 64"));
+            imageKeyList.Add(new ImageKey("ios", "iOS"));
+            imageKeyList.Add(new ImageKey("xbox","Xbox")); 
+            
+         //initialize the buttopns
+            button1.Content = FindResource(imageKeyList[b1].getImageKey());
+            button2.Content = FindResource(imageKeyList[b2].getImageKey());
+            button3.Content = FindResource(imageKeyList[b3].getImageKey());
 
 
             for(int i=1; i <= 12; i++) {
@@ -73,8 +81,12 @@ namespace _8BitIMS
         // mouse listener can be implemented in the future 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+            player2.Play();
+            MainWindow.tableNameFromButtonClickedInPage = imageKeyList[b1].getConsoleName();
+            this.NavigationService.Navigate(new Uri("InventoryPage.xaml", UriKind.Relative));
+          
+        
+    }
 
         private void button1_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -88,7 +100,10 @@ namespace _8BitIMS
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-
+            player2.Play();
+            MainWindow.tableNameFromButtonClickedInPage = imageKeyList[b2].getConsoleName();
+            this.NavigationService.Navigate(new Uri("InventoryPage.xaml", UriKind.Relative));
+           
         }
 
         private void button2_MouseEnter(object sender, MouseEventArgs e)
@@ -103,7 +118,10 @@ namespace _8BitIMS
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-
+            player2.Play();
+            MainWindow.tableNameFromButtonClickedInPage = imageKeyList[b3].getConsoleName();
+            this.NavigationService.Navigate(new Uri("InventoryPage.xaml", UriKind.Relative));
+            
         }
 
         private void button3_MouseEnter(object sender, MouseEventArgs e)
@@ -118,26 +136,27 @@ namespace _8BitIMS
 
         private void Canvas_MouseWheel_1(object sender, MouseWheelEventArgs e)
         {
+            player.Play();
             if (e.Delta < 0)      // scroll toward user
             {
                 logorotateCC();
-                b1 = (imageKeyList.Count + (b1 - 1)) % imageKeyList.Count;
-                b2 = (imageKeyList.Count + (b2 - 1)) % imageKeyList.Count;
-                b3 = (imageKeyList.Count + (b3 - 1)) % imageKeyList.Count;
-                button1.Content = FindResource(imageKeyList[b1]);
-                button2.Content = FindResource(imageKeyList[b2]);
-                button3.Content = FindResource(imageKeyList[b3]);
+                b1 = (imageKeyList.Count + (b1-1)) % imageKeyList.Count;
+                b2 = (imageKeyList.Count + (b2-1)) % imageKeyList.Count;
+                b3 = (imageKeyList.Count + (b3-1)) % imageKeyList.Count;
+                button1.Content = FindResource(imageKeyList[b1].getImageKey());
+                button2.Content = FindResource(imageKeyList[b2].getImageKey());
+                button3.Content = FindResource(imageKeyList[b3].getImageKey());
 
             }
             else       // scroll away user
             {
                 logorotateC();
-                b1 = (imageKeyList.Count + (b1 + 1)) % imageKeyList.Count;
-                b2 = (imageKeyList.Count + (b2 + 1)) % imageKeyList.Count;
-                b3 = (imageKeyList.Count + (b3 + 1)) % imageKeyList.Count;
-                button1.Content = FindResource(imageKeyList[b1]);
-                button2.Content = FindResource(imageKeyList[b2]);
-                button3.Content = FindResource(imageKeyList[b3]);
+                b1 = (imageKeyList.Count + (b1+1)) % imageKeyList.Count;
+                b2 = (imageKeyList.Count + (b2+1)) % imageKeyList.Count;
+                b3 = (imageKeyList.Count + (b3+1)) % imageKeyList.Count;
+                button1.Content = FindResource(imageKeyList[b1].getImageKey());
+                button2.Content = FindResource(imageKeyList[b2].getImageKey());
+                button3.Content = FindResource(imageKeyList[b3].getImageKey());
 
             }
 
@@ -201,5 +220,30 @@ namespace _8BitIMS
         {
             this.NavigationService.Navigate(new Uri("MainPage.xaml", UriKind.Relative));
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
+    public class ImageKey {
+        private string imageKey;
+        private string ConsoleName;
+        public ImageKey(string imageKey, string ConsoleName)
+        {
+            this.imageKey = imageKey;
+            this.ConsoleName = ConsoleName;
+        }
+        
+        public string getImageKey()
+        {
+            return this.imageKey;
+        }
+        public string getConsoleName()
+        {
+            return this.ConsoleName;
+        }
+    }
+
+
 }
