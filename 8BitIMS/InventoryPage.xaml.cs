@@ -138,7 +138,7 @@ namespace _8BitIMS
 
         private void Back(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("UpdateInventory.xaml", UriKind.Relative));
+            this.NavigationService.GoBack();
         }
 
         private void Submit(object sender, RoutedEventArgs e)

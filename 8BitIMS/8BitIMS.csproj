@@ -441,6 +441,7 @@
     <Resource Include="img\bbc.png" />
     <Resource Include="img\3DO.png" />
     <Resource Include="img\32x.png" />
+    <Resource Include="img\psv.png" />
     <Content Include="kick.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

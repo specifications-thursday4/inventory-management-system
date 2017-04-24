@@ -95,10 +95,10 @@
     Style="{StaticResource TransparentStyle }" Click="logo_Click" Padding="0"     Name="logo" Canvas.Left="496" Canvas.Top="208" Height="100" Width="104" RenderTransformOrigin="0.336,0.449">
                     <DynamicResource ResourceKey="logo1"/>
                 </Button>
-                <TextBox Height="14" Canvas.Left="527" TextWrapping="Wrap" Text="HOME" Canvas.Top="313" Width="54" FontFamily="Press Start 2P" Background="Transparent"/>
+                <TextBox Height="14" BorderThickness="0" IsReadOnly = "True" Canvas.Left="527" TextWrapping="Wrap" Text="HOME" Canvas.Top="313" Width="54" FontFamily="Press Start 2P" Background="Transparent"/>
 
             </Canvas>
-            <TextBox HorizontalAlignment="Left" Height="54" Margin="24,214,0,0" Grid.RowSpan="2" TextWrapping="Wrap" Text="    8-BIT                
+            <TextBox HorizontalAlignment="Left" BorderThickness="0" IsReadOnly = "True" Height="54" Margin="24,214,0,0" Grid.RowSpan="2" TextWrapping="Wrap" Text="    8-BIT                
                      HALL OF FAME" VerticalAlignment="Top" Width="302" FontFamily="Press Start 2P" FontSize="22" TextChanged="TextBox_TextChanged" Foreground="#FFE8DD19" Background="Transparent"></TextBox>
         </Grid>
     </Canvas>
