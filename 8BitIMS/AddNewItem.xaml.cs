@@ -447,6 +447,10 @@ namespace _8BitIMS
                     
                 }
 
+                else if (screenState == 2) //adding misc items
+                {
+
+                }
                 this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
 
             }
