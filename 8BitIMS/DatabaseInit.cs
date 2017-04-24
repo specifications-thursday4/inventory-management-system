@@ -125,17 +125,6 @@ namespace _8BitIMS
             command.ExecuteNonQuery();
 
 
-            command.CommandText = "CREATE TABLE IF NOT EXISTS misc("
-                + " id int PRIMARY KEY,"
-                + " name text NOT NULL,"
-                + " quantity int NOT NULL,"
-                + " price int,"
-                + " inBoxPrice int,"
-                + " inBoxQuant int"
-                + ");";
-            command.ExecuteNonQuery();
-
-
             command.CommandText = "CREATE TABLE IF NOT EXISTS games("
                + " id int PRIMARY KEY,"
                + " name text NOT NULL"
@@ -218,6 +207,19 @@ namespace _8BitIMS
                         }
                     }
             }
+
+            int rNum = RandomGenerator.GetNext();
+            // Makes a misc platform
+            command.CommandText = "INSERT into platforms (id, name, quantity, price, inBoxQuant, inBoxPrice)"
+                 + "VALUES(@id,@name,@quant, @price, @ibQuant, @ibPrice)";
+
+            command.Parameters.AddWithValue("@id", rNum);
+            command.Parameters.AddWithValue("@name", "Misc");
+            command.Parameters.AddWithValue("@quant", 0);
+            command.Parameters.AddWithValue("@price", -1);
+            command.Parameters.AddWithValue("@ibQuant", 0);
+            command.Parameters.AddWithValue("@ibPrice", -1);
+            command.ExecuteNonQuery();
 
             conn.Close();
 
