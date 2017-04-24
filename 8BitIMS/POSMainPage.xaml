@@ -8,13 +8,21 @@
 	Title="POSMainPage">
     <Page.Resources>
         <Image x:Key="x" Source="/8BitIMS;component/img/xbox.png" Height="100" Width="100" />
-        <Image x:Key="xp" Source="/8BitIMS;component/img/xboxp.png" Height="100" Width="100"/>
         <Image x:Key="w" Source="/8BitIMS;component/img/wii.png" Height="100" Width="100" />
-        <Image x:Key="wp" Source="/8BitIMS;component/img/wiip.png" Height="100" Width="100"/>
         <Image x:Key="p" Source="/8BitIMS;component/img/ps.png" Height="100" Width="100" />
-        <Image x:Key="pp" Source="/8BitIMS;component/img/psp.png" Height="100" Width="100"/>
         <Image x:Key="n" Source="/8BitIMS;component/img/nintendo.png" Height="100" Width="100"/>
-        <Image x:Key="np" Source="/8BitIMS;component/img/nintendop.png" Height="100" Width="100" />
+        <Image x:Key="nfcds" Source="/8BitIMS;component/img/nintendofcds.png" Height="100" Width="100"/>
+
+        <Image x:Key="ngc" Source="/8BitIMS;component/img/nintendogc.png" Height="100" Width="100"/>
+        <Image x:Key="nes" Source="/8BitIMS;component/img/nintendones.png" Height="100" Width="100"/>
+        <Image x:Key="ns" Source="/8BitIMS;component/img/nintendoswitch.png" Height="100" Width="100"/>
+        <Image x:Key="ouya" Source="/8BitIMS;component/img/ouya.png" Height="100" Width="100"/>
+        <Image x:Key="pc" Source="/8BitIMS;component/img/pc.png" Height="60" Width="100"/>
+        <Image x:Key="pcd" Source="/8BitIMS;component/img/pcdos.png" Height="60" Width="100"/>
+        <Image x:Key="ps2" Source="/8BitIMS;component/img/ps2.png" Height="100" Width="100"/>
+        <Image x:Key="ps3" Source="/8BitIMS;component/img/ps3.png" Height="100" Width="100"/>
+        <Image x:Key="ps4" Source="/8BitIMS;component/img/ps4.png" Height="100" Width="100"/>
+
         <Image x:Key="logo1" Source="/8BitIMS;component/img/8bitlogo1.png" Height="100" Width="100" />
         <Image x:Key="logo2" Source="/8BitIMS;component/img/8bitlogo2.png" Height="100" Width="100" />
         <Image x:Key="logo3" Source="/8BitIMS;component/img/8bitlogo3.png" Height="100" Width="100" />

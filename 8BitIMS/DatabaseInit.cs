@@ -120,7 +120,7 @@ namespace _8BitIMS
                 + " quantity int NOT NULL,"
                 + " price int,"
                 + " inBoxPrice int,"
-                + " inBoxQuantity int"
+                + " inBoxQuant int"
                 + ");";
             command.ExecuteNonQuery();
 
@@ -137,8 +137,8 @@ namespace _8BitIMS
                 + " platform_id int NOT NULL,"
                 + " quantity int NOT NULL,"
                 + " price int,"
-                + " inBoxQuant int,"
                 + " inBoxPrice int,"
+                + " inBoxQuant int,"
                 + " PRIMARY KEY(game_id, platform_id),"
                 + " CONSTRAINT fk_game_id FOREIGN KEY(game_id)REFERENCES games(id),"
                 + " CONSTRAINT fk_platform_id FOREIGN KEY(platform_id) REFERENCES platforms(id)"
@@ -151,6 +151,7 @@ namespace _8BitIMS
                 + " game_id int NOT NULL,"
                 + " platform_id int NOT NULL,"
                 + " quantity int NOT NULL,"
+                + " time timestamp NOT NULL,"
                 + " PRIMARY KEY(transaction_id),"
                 + " CONSTRAINT fk_game_id FOREIGN KEY(game_id)REFERENCES games(id),"
                 + " CONSTRAINT fk_platform_id FOREIGN KEY(platform_id) REFERENCES platforms(id)"
@@ -181,8 +182,8 @@ namespace _8BitIMS
             foreach (Games game in gamesList)
             {
                 Console.WriteLine("Inserting " + game.name + " into games table");
-                command.CommandText = "INSERT INTO games(id, name, quantity) VALUES("
-                            + game.id + ",'" + game.name.Replace("'", "''") + "', 0);";
+                command.CommandText = "INSERT INTO games(id, name) VALUES("
+                            + game.id + ",'" + game.name.Replace("'", "''") + "');";
                 command.ExecuteNonQuery();
             }
 
@@ -190,8 +191,8 @@ namespace _8BitIMS
             foreach (Platforms plat in platsList)
             {
                 Console.WriteLine("Inserting " + plat.name + " into platform table");
-                command.CommandText = "INSERT INTO platforms(id, name, quantity) VALUES("
-                    + plat.id + ",'" + plat.name.Replace("'", "''") + "', 0);";
+                command.CommandText = "INSERT INTO platforms(id, name, quantity, price, inBoxPrice, inBoxQuant) VALUES("
+                    + plat.id + ",'" + plat.name.Replace("'", "''") + "', 0, -1, -1, 0);";
                 command.ExecuteNonQuery();
 
                 foreach (int i in plat.games)
@@ -200,12 +201,26 @@ namespace _8BitIMS
                         if (title.id == i)
                         {
                             Console.WriteLine("Inserting " + title.name + " into multiplat_games table under " + plat.name);
-                            command.CommandText = "INSERT INTO multiplat_games(game_id, platform_id, quantity) VALUES("
-                                + title.id + "," + plat.id + ", 0);";
+                            command.CommandText = "INSERT INTO multiplat_games(game_id, platform_id, quantity, price, inBoxPrice, inBoxQuant) VALUES("
+                                + title.id + "," + plat.id + ", 0, -1, -1, 0);";
                             command.ExecuteNonQuery();
                         }
                     }
             }
+
+            int rNum = RandomGenerator.GetNext();
+            // Makes a misc platform
+            command.CommandText = "INSERT into platforms (id, name, quantity, price, inBoxQuant, inBoxPrice)"
+                 + "VALUES(@id,@name,@quant, @price, @ibQuant, @ibPrice)";
+
+            command.Parameters.AddWithValue("@id", rNum);
+            command.Parameters.AddWithValue("@name", "Misc");
+            command.Parameters.AddWithValue("@quant", 0);
+            command.Parameters.AddWithValue("@price", -1);
+            command.Parameters.AddWithValue("@ibQuant", 0);
+            command.Parameters.AddWithValue("@ibPrice", -1);
+            command.ExecuteNonQuery();
+
             conn.Close();
 
         }
