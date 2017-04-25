@@ -130,6 +130,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Games.cs" />
+    <Compile Include="PopularInventory.xaml.cs">
+      <DependentUpon>PopularInventory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SummaryReports.xaml.cs">
       <DependentUpon>SummaryReports.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,9 @@
       <DependentUpon>QuickAdd.xaml</DependentUpon>
     </Compile>
     <Compile Include="RandomGenerator.cs" />
+    <Compile Include="TotalInventory.xaml.cs">
+      <DependentUpon>TotalInventory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateInventory.xaml.cs">
       <DependentUpon>UpdateInventory.xaml</DependentUpon>
     </Compile>
@@ -181,6 +187,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PopularInventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SummaryReports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuickAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TotalInventory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
