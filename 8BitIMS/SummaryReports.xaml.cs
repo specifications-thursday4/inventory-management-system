@@ -24,5 +24,15 @@ namespace _8BitIMS
         {
             InitializeComponent();
         }
+        private void popular(object sender, RoutedEventArgs e)
+
+        {
+            this.NavigationService.Navigate(new Uri("PopularInventory.xaml", UriKind.Relative));
+        }
+        private void TotalInventory(object sender, RoutedEventArgs e)
+
+        {
+            this.NavigationService.Navigate(new Uri("TotalInventory.xaml", UriKind.Relative));
+        }
     }
 }

@@ -1,4 +1,4 @@
-<Page x:Class="_8BitIMS.MainPage"
+﻿<Page x:Class="_8BitIMS.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -35,6 +35,7 @@
         <Canvas>
             <Image Source="res/logo.png" Height="180" Canvas.Top="170" Canvas.Left="60" Width="550"/>
         </Canvas>
+
 
     </Grid>
 

@@ -12,7 +12,14 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
+        <Button Style="{StaticResource QuestionBlock}" Click="popular" Grid.Column="0" HorizontalAlignment="Center"/>
+        <Button Style="{StaticResource QuestionBlock}" Click="TotalInventory" Grid.Column="1" HorizontalAlignment="Center"/>
+        <Canvas>
+            <Label Content="popular" FontSize="18" HorizontalAlignment="Center" Grid.Column="0" Width="85" Canvas.Left="120" Canvas.Top="159" />
+        </Canvas>
+        <Canvas>
+            <Label Content="Total Inventory" FontSize="18" HorizontalAlignment="Center" Grid.Column="1" Canvas.Left="417" Canvas.Top="162"  />
+        </Canvas>
     </Grid>
 
 
