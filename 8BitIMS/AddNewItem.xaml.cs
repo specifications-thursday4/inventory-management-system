@@ -48,7 +48,7 @@ namespace _8BitIMS
 
         private bool resultReturn = true; // if invalid inputs return to screen
         private int screenState = -1; //0 is console add, 1 is game
-
+        private bool ret = true; // if no platform then return to page without exiting
         public AddNewItem()
         {
             InitializeComponent();
@@ -227,6 +227,8 @@ namespace _8BitIMS
             SQLiteConnection conn = new SQLiteConnection(DATABASE);
             conn.Open();
             var command = conn.CreateCommand();
+            resultReturn = true;
+            ret = true; 
 
             // checks for values and prompts
             if (string.IsNullOrWhiteSpace(itemName.Text))
@@ -367,19 +369,33 @@ namespace _8BitIMS
                         // if game is in the database
                         if (gN.ToUpper().Equals(name.ToUpper()))
                         {
-                            command.CommandText = "Select id from games " +
-                                                    "where Upper(name) = '" + name.Trim().ToUpper() + "'";
-                            var gameID = command.ExecuteScalar();
 
-                            command.CommandText = "UPDATE multiplat_games" +
-                                 "set (inBoxQuant, inBoxPrice)" +
-                                 " = (@quant, @price)" +
-                                 " WHERE game_id = "+ gameID;
+                            command.CommandText = "Select id from platforms " +
+                                          "where Upper(name) = '" + consoleText.Text.Trim().ToUpper() + "'";
+                            var platid = command.ExecuteScalar();
 
-                            command.Parameters.AddWithValue("@quant", quantity);
-                            command.Parameters.AddWithValue("@price", price);
+                            if (platid == null)
+                            {
+                                MessageBox.Show("Platform not found in the database.");
+                                ret = false;
+                            }
+                            else
+                            {
+                                command.CommandText = "Select id from games " +
+                                    "where Upper(name) = '" + name.Trim().ToUpper() + "'";
+                                var gameID = command.ExecuteScalar();
 
-                            command.ExecuteNonQuery();
+                                command.CommandText = "UPDATE multiplat_games" +
+                                     " set (inBoxQuant, inBoxPrice)" +
+                                     " = (@quant, @price)" +
+                                     " WHERE game_id = " + gameID + " and platform_id = " + platid;
+
+                                command.Parameters.AddWithValue("@quant", quantity);
+                                command.Parameters.AddWithValue("@price", price);
+
+                                command.ExecuteNonQuery();
+                            }
+ 
                         }
                         else
                         {
@@ -390,7 +406,8 @@ namespace _8BitIMS
 
                             if (platID == null)
                             {
-                                MessageBox.Show("No such platform");
+                                MessageBox.Show("Platform not found in the database.");
+                                ret = false;
                             }
                             else
                             {
@@ -421,19 +438,33 @@ namespace _8BitIMS
                     {
                         if (gN.ToUpper().Equals(name.ToUpper()))
                         {
-                            command.CommandText = "Select id from games " +
-                                       "where Upper(name) = '" + name.Trim().ToUpper() + "'";
-                            var gameID = command.ExecuteScalar();
 
-                            command.CommandText = "UPDATE multiplat_games" +
-                                 "set (quantity, price)" +
-                                 " = (@quant, @price)" +
-                                 " WHERE game_id = " + gameID;
+                            command.CommandText = "Select id from platforms " +
+                                 "where Upper(name) = '" + consoleText.Text.Trim().ToUpper() + "'";
+                            var platid = command.ExecuteScalar();
 
-                            command.Parameters.AddWithValue("@quant", quantity);
-                            command.Parameters.AddWithValue("@price", price);
+                            if (platid == null)
+                            {
+                                MessageBox.Show("Platform not found in database.");
+                                ret = false;
+                            }
+                            else
+                            {
 
-                            command.ExecuteNonQuery();
+                                command.CommandText = "Select id from games " +
+                                           "where Upper(name) = '" + name.Trim().ToUpper() + "'";
+                                var gameID = command.ExecuteScalar();
+
+                                command.CommandText = "UPDATE multiplat_games" +
+                                     " set (quantity, price)" +
+                                     "= (@quant, @price)" +
+                                     " WHERE game_id = " + gameID + " and platform_id = " + platid;
+
+                                command.Parameters.AddWithValue("@quant", quantity);
+                                command.Parameters.AddWithValue("@price", price);
+
+                                command.ExecuteNonQuery();
+                            }
                         }
                         else
                         {
@@ -444,7 +475,8 @@ namespace _8BitIMS
 
                             if (platID == null)
                             {
-                                MessageBox.Show("No such platform");
+                                MessageBox.Show("Console is not in the database");
+                                ret = false;
                             }
                             else
                             {
@@ -570,7 +602,11 @@ namespace _8BitIMS
 
 
                 }
-                this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
+                if (ret == true)
+                {
+                    this.NavigationService.Navigate(new Uri("QuickAdd.xaml", UriKind.Relative));
+                }
+               
 
             }
 
